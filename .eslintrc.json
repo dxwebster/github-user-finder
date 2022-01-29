@@ -1,0 +1,65 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+
+  "parser": "@typescript-eslint/parser", // @typescript-eslint/parser
+  "parserOptions": {
+    "ecmaFeatures": { "jsx": true },
+    "ecmaVersion": 13,
+    "sourceType": "module"
+  },
+
+  // Plugins de ESLint instalados
+  "plugins": [
+    "react", // eslint-plugin-react@latest
+    "prettier", // eslint-config-prettier eslint-plugin-prettier
+    "import", // eslint-plugin-import@latest eslint-import-resolver-typescript@latest
+    "@typescript-eslint" // @typescript-eslint/eslint-plugin@latest @typescript-eslint/parser@latest
+  ],
+
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "prettier"
+  ],
+
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": { "alwaysTryTypes": true },
+      "node": { "extensions": [".js", ".jsx", ".ts", ".tsx"] },
+      "react": { "extensions": [".ts", ".tsx", ".js", ".jsx"] }
+    },
+    "react": {
+      "version": "detect"
+    }
+  },
+
+  "rules": {
+    "prettier/prettier": "off",
+
+    "no-unused-vars": "off",
+    "no-empty-function": "warn",
+    "no-case-declarations": "off",
+
+    "@typescript-eslint/no-unused-vars": ["off"],
+    "@typescript-eslint/no-empty-function": ["warn"],
+    "@typescript-eslint/no-explicit-any": ["off"],
+    "@typescript-eslint/explicit-module-boundary-types": ["off"],
+
+    "import/no-unresolved": "error",
+    "import/namespace": "off",
+
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-one-expression-per-line": "off"
+  }
+}

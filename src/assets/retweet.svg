@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="16px" viewBox="0 0 15 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>refresh-69</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="twitter/retweet" transform="translate(-150.000000, -95.000000)" stroke="#657786">
+            <g id="Tweet">
+                <g id="Content" transform="translate(68.000000, 20.000000)">
+                    <g id="Info-tweet" transform="translate(2.000000, 75.000000)">
+                        <g id="refresh-69" transform="translate(80.000000, 0.000000)">
+                            <path d="M0.5,7.5 C0.5,3.634 3.634,0.5 7.5,0.5 C10.136,0.5 12.328,2.141 13.5,4.5" id="Shape"></path>
+                            <polyline id="Shape" points="13.5 0.5 13.5 4.5 9.5 4.5"></polyline>
+                            <path d="M14.5,8.5 C14.5,12.366 11.366,15.5 7.5,15.5 C4.864,15.5 2.672,13.859 1.5,11.5" id="Shape"></path>
+                            <polyline id="Shape" points="1.5 15.5 1.5 11.5 5.5 11.5"></polyline>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>chat-round</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="twitter/retweet" transform="translate(-70.000000, -95.000000)" stroke="#657786">
+            <g id="Tweet">
+                <g id="Content" transform="translate(68.000000, 20.000000)">
+                    <g id="Info-tweet" transform="translate(2.000000, 75.000000)">
+                        <g id="chat-round">
+                            <path d="M15.5,7 C15.5,3.41 12.142,0.5 8,0.5 C3.858,0.5 0.5,3.41 0.5,7 C0.5,10.59 3.858,13.5 8,13.5 C8.525,13.5 9.037,13.452 9.532,13.363 L13.5,15.5 L13.5,11.409 C14.738,10.25 15.5,8.704 15.5,7 Z" id="Shape"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

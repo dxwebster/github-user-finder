@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="16px" viewBox="0 0 14 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="TWITTER-PROFILE-2018" transform="translate(-132.000000, -692.000000)" fill="#657786">
+            <g id="Profile" transform="translate(0.000000, 341.000000)">
+                <g id="Quick-informations" transform="translate(129.000000, 350.000000)">
+                    <g id="Place" transform="translate(3.000000, 0.000000)">
+                        <g id="Group" transform="translate(0.000000, 1.000000)">
+                            <path d="M7,0 C3.1,0 0,3.1 0,7 C0,8.9 0.7,10.7 2.1,12 C2.2,12.1 6.2,15.7 6.3,15.8 C6.7,16.1 7.3,16.1 7.6,15.8 C7.7,15.7 11.8,12.1 11.8,12 C13.2,10.7 13.9,8.9 13.9,7 C14,3.1 10.9,0 7,0 Z M10.4,10.6 C10.4,10.6 10.4,10.7 10.4,10.6 L7,13.6 L3.6,10.6 C3.6,10.6 3.6,10.6 3.6,10.6 C2.6,9.7 2,8.4 2,7 C2,4.2 4.2,2 7,2 C9.8,2 12,4.2 12,7 C12,8.4 11.4,9.7 10.4,10.6 Z" id="Shape" fill-rule="nonzero"></path>
+                            <circle id="Oval-3" cx="7" cy="7" r="2"></circle>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
