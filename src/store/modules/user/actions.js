@@ -1,21 +1,29 @@
-import { TYPE_USER_REQUEST, TYPE_USER_SUCCESS, TYPE_USER_FAILURE } from '../../../constants/types-reducers';
+import { TYPE_USER_DATA_REQUEST, TYPE_USER_DATA_SUCCESS, TYPE_USER_DATA_FAILURE } from '../../../constants/types-reducers';
 
 export function userRequest(user) {
-  console.log('✅ ~ user actions', user);
   return {
-    type: TYPE_USER_REQUEST,
+    type: TYPE_USER_DATA_REQUEST,
     payload: { user }
   };
 }
-export function userSuccess(courses) {
+
+export function userSuccess(user, repos, starred) {
   return {
-    type: TYPE_USER_SUCCESS,
-    payload: courses
+    type: TYPE_USER_DATA_SUCCESS,
+    payload: { user, repos, starred }
   };
 }
+
 export function userFailure(error) {
   return {
-    type: TYPE_USER_FAILURE,
+    type: TYPE_USER_DATA_FAILURE,
     payload: error
+  };
+}
+
+export function setLoading(boolean) {
+  return {
+    type: 'TYPE_LOADING',
+    payload: boolean
   };
 }

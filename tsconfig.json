@@ -19,7 +19,7 @@
   },
   "include": [
     "src/**/*.ts" // *** The files TypeScript should type check ***
-  ],
+, "src/assets/SvgLoading.js"  ],
   "exclude": ["node_modules", "dist", "src/server/**/*"], // *** The files to not type check ***
   "types": ["node"]
 }

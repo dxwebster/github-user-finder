@@ -1,17 +1,25 @@
 import { takeLatest, all, put, call } from 'redux-saga/effects';
 import { userSuccess, userFailure } from './actions';
-import { TYPE_USER_REQUEST } from '../../../constants/types-reducers';
+import { TYPE_USER_DATA_REQUEST } from '../../../constants/types-reducers';
 import api from '../../../services/api';
+import userDataMapper from '../../../mappers/userDataMapper';
 
 export function* getUser({ payload }) {
+  const { user } = payload;
+
   try {
-    const { user } = payload;
-
     const url = `/users/${user}`;
+    const reposUrl = `/users/${user}/repos`;
+    const starredUrl = `/users/${user}/starred`;
 
-    const { data } = yield call(api.get, url, null);
+    const userResponse = yield call(api.get, url, null);
+    const reposResponse = yield call(api.get, reposUrl, null);
+    const starredResponse = yield call(api.get, starredUrl, null);
 
-    yield put(userSuccess(data));
+    const dataWrapper = userDataMapper(userResponse.data, reposResponse.data, starredResponse.data);
+    const { userMapper, reposMapper, starredMapper } = dataWrapper;
+
+    yield put(userSuccess(userMapper, reposMapper, starredMapper));
   } catch (err) {
     const error = err.result ? err.result : { message: 'Erro ao buscar user.' };
 
@@ -20,4 +28,4 @@ export function* getUser({ payload }) {
   }
 }
 
-export default all([takeLatest(TYPE_USER_REQUEST, getUser)]);
+export default all([takeLatest(TYPE_USER_DATA_REQUEST, getUser)]);

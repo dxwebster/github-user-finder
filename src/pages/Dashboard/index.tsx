@@ -6,17 +6,17 @@ import { useSelector, RootStateOrAny } from 'react-redux';
 import { Container, Main, Top, Repositories } from './styles';
 
 import Header from '../../components/Header';
-import { Repository } from '../../models/Repository';
+import { Repository } from '../../interfaces/Repository';
 
 export default function Dashboard() {
-  const { name, user, repositories } = useSelector((state: RootStateOrAny) => state.auth);
+  const { user } = useSelector((state: RootStateOrAny) => state.user);
 
   return (
     <Container>
       <Header />
       <Main>
         <Top>
-          <h2>Olá, {name}</h2>
+          <h2>Olá, {user.name}</h2>
           <p>
             É bom ter você de volta! <br />
             Continue aprendendo, retorne para a aula que parou.
@@ -37,7 +37,7 @@ export default function Dashboard() {
           </ul>
         )}
 
-        <Repositories>
+        {/* <Repositories>
           {repositories?.map((repository: Repository) => (
             <Link key={repository?.full_name} to={`/repositories/${repository?.full_name}`}>
               <img src={repository?.owner?.avatar_url} alt={repository?.owner?.login} />
@@ -48,7 +48,7 @@ export default function Dashboard() {
               <FiChevronRight size={20} />
             </Link>
           ))}
-        </Repositories>
+        </Repositories> */}
       </Main>
     </Container>
   );

@@ -7,6 +7,7 @@ export const Container = styled.main`
   height: 100vh;
   align-items: stretch;
 `;
+
 export const Background = styled.div`
   flex: 1;
   background: url(${background}) no-repeat center;
@@ -80,6 +81,32 @@ export const SearchContent = styled.div`
       &:hover {
         background: ${shade(0.2, '#04d361')};
       }
+    }
+  }
+`;
+
+export const Loading = styled.div`
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-color: rgba(65, 65, 76, 0.9);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    h1 {
+      position: absolute;
+      bottom: 10rem;
+      color: ${(props) => props.theme.white};
     }
   }
 `;
