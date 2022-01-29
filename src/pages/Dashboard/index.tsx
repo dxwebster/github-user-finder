@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { FiChevronRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import { useSelector, RootStateOrAny } from 'react-redux';
 
-import { Container, Main, Top, Repositories } from './styles';
+import { Container, Main, FilterOptions, Repositories, ProfileContainer, DisplayButton } from './styles';
 
 import Header from '../../components/Header';
+import SvgList from '../../assets/SvgList';
+import SvgGrid from '../../assets/SvgGrid';
 import { Repository } from '../../interfaces/Repository';
 import { getFromLocalStorage } from '../../helpers/local-storage';
 
 export default function Dashboard() {
-  // const { user } = useSelector((state: RootStateOrAny) => state.user);
   const [user, setUser] = useState(null);
   const [repos, setRepos] = useState(null);
+  const [isListActive, setListActive] = useState(true);
+  const [isGridActive, setGridActive] = useState(false);
 
   useEffect(() => {
     setUser(getFromLocalStorage('@Github: user'));
@@ -23,16 +25,42 @@ export default function Dashboard() {
     <Container>
       <Header />
       <Main>
-        {user?.name && (
-          <>
-            <Top>
-              <h2>Olá, {user.name}</h2>
-              <p>
-                É bom ter você de volta! <br />
-                Continue aprendendo, retorne para a aula que parou.
-              </p>
-            </Top>
+        <FilterOptions>
+          <input type="search" />
 
+          <ul>
+            <li>Mais recentes</li>
+            <li>Stars</li>
+            <li>Linguagens</li>
+          </ul>
+
+          <section>
+            <DisplayButton
+              active={isListActive}
+              className="list"
+              onClick={() => {
+                setListActive(true);
+                setGridActive(false);
+              }}
+            >
+              <SvgList />
+            </DisplayButton>
+
+            <DisplayButton
+              active={isGridActive}
+              className="grid"
+              onClick={() => {
+                setListActive(false);
+                setGridActive(true);
+              }}
+            >
+              <SvgGrid />
+            </DisplayButton>
+          </section>
+        </FilterOptions>
+
+        <ProfileContainer>
+          {user?.name && (
             <ul>
               <li> {user?.name}</li>
               <li> {user?.login}</li>
@@ -44,19 +72,20 @@ export default function Dashboard() {
               <li> {user?.starred_url}</li>
               <li> {user?.repos_url}</li>
             </ul>
-          </>
-        )}
+          )}
+        </ProfileContainer>
 
-        <Repositories>
+        <Repositories display={isListActive}>
           {repos?.map((repo: Repository) => (
-            <Link key={repo?.full_name} to={`/repositories/${repo?.full_name}`}>
-              <img src={repo?.owner?.avatar_url} alt={repo?.owner?.login} />
-              <div>
-                <strong>{repo?.full_name}</strong>
-                <p>{repo?.description}</p>
-              </div>
-              <FiChevronRight size={20} />
-            </Link>
+            <section key={repo?.full_name}>
+              <Link to="/dashboard">
+                <div>
+                  <span>{repo?.full_name}</span>
+                  {repo?.description && <p>{repo.description}</p>}
+                </div>
+                <FiChevronRight size={20} />
+              </Link>
+            </section>
           ))}
         </Repositories>
       </Main>

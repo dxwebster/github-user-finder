@@ -9,47 +9,79 @@ export const Main = styled.main`
   width: 70%;
   margin: 50px auto;
 
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 2rem;
+  grid-template-columns: 30% 70%;
+  grid-template-areas:
+    'sidenav nav'
+    'sidenav content';
 `;
 
-export const Top = styled.div`
+export const FilterOptions = styled.div`
+  grid-area: nav;
   display: flex;
-  gap: 2rem;
+  justify-content: space-between;
 
-  p {
-    color: rgb(168, 168, 179);
+  ul {
+    display: flex;
   }
 
-  h2 {
-    color: white;
-    margin-bottom: 2rem;
-    font-size: 1.6rem;
+  .list {
+    border-bottom-left-radius: 0.5rem;
+    border-top-left-radius: 0.5rem;
+
+    border-left: 1px solid ${(props) => props.theme.border};
+    border-top: 1px solid ${(props) => props.theme.border};
+    border-bottom: 1px solid ${(props) => props.theme.border};
+  }
+
+  .grid {
+    border-bottom-right-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    border: 1px solid ${(props) => props.theme.border};
   }
 `;
 
-export const Repositories = styled.div`
-  margin-top: 80px;
-  max-width: 700px;
+export const ProfileContainer = styled.div`
+  grid-area: sidenav;
+  background-color: ${(props) => props.theme.white};
+`;
+
+interface RepositoriesProps {
+  display: boolean;
+}
+
+export const Repositories = styled.div<RepositoriesProps>`
+  grid-area: content;
+
+  display: ${(props) => (props.display ? 'flex' : 'grid')};
+  flex-direction: ${(props) => (props.display ? 'column' : 'row')};
+  min-height: ${(props) => (props.display ? 'auto' : '20rem')};
+  grid-template-columns: 1fr 1fr;
+  flex-wrap: wrap;
+  gap: 1.2rem;
 
   a {
-    background: #fff;
+    background-color: ${(props) => props.theme.white};
     border-radius: 5px;
-    width: 100%;
     padding: 24px;
     display: block;
     text-decoration: none;
+
     display: flex;
     align-items: center;
     transition: transform 0.2s;
+    gap: 2rem;
 
-    & + a {
-      margin-top: 16px;
+    span {
+      font-size: 2rem;
+      color: ${(props) => props.theme.title};
     }
 
-    &:hover {
-      transform: translateX(10px);
+    p {
+      font-size: 1.4rem;
+      color: ${(props) => props.theme.text};
+      margin-top: 1rem;
     }
 
     img {
@@ -57,23 +89,31 @@ export const Repositories = styled.div`
       height: 64px;
       border-radius: 50%;
     }
-    div {
-      margin: 0 16px;
-      flex: 1;
 
-      strong {
-        font-size: 20px;
-        color: #3d3d4d;
-      }
-      p {
-        font-size: 18px;
-        color: #a8a8b3;
-        margin-top: 4px;
-      }
-    }
     svg {
       margin-left: auto;
       color: #cbcbd6;
     }
+
+    /* div {
+      margin: 0 16px;
+      flex: 1;
+
+
+    } */
+  }
+`;
+
+interface DisplayButtonProps {
+  active: boolean;
+}
+
+export const DisplayButton = styled.button<DisplayButtonProps>`
+  background-color: ${(props) => (props.active ? props.theme.border : props.theme.white)};
+  padding: 1rem 1.8rem;
+
+  svg {
+    width: 2rem;
+    height: 2rem;
   }
 `;
