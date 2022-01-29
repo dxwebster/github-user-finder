@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import createSagaMiddleware from 'redux-saga';
 import createStore from './createStore';
 
@@ -10,8 +11,8 @@ import '../config/ReactotronConfig';
 
 const sagaMonitor = process.env.REACT_APP_ENVIRONMENT === 'development' ? console.tron.createSagaMonitor() : null;
 
-const sagaMiddleware = createSagaMiddleware({ 
-  sagaMonitor,
+const sagaMiddleware = createSagaMiddleware({
+  sagaMonitor
 });
 
 const middlewares = [sagaMiddleware];

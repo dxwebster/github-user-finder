@@ -1,28 +1,28 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: 'https://api.github.com'
 });
 
-api.registerInterceptWithStore = store => {
+api.registerInterceptWithStore = (store) => {
   api.interceptors.response.use(
-    response => {
+    (response) => {
       if (
         response.data &&
         !response.data.success &&
         (response.data.httpStatusCode === 403 || response.data.httpStatusCode === 401)
       ) {
-        alert("SignOut")
+        alert('SignOut');
       }
 
       return response;
     },
-    err => {
+    (err) => {
       if (err.response.status === 403 || err.response.status === 401) {
-        alert("SignOut")
+        alert('SignOut');
       }
       return err;
-    },
+    }
   );
 };
 

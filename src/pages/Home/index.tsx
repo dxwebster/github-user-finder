@@ -1,17 +1,17 @@
 import React, { useState, useEffect, FormEvent, useRef, useCallback } from 'react';
-import { FiLock } from 'react-icons/fi';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 
 import { Container, SearchContent, Background } from './styles';
 import { userGit } from '../../mocks/user';
-import { reposGit } from '../../mocks/repositories';
 import { getFromLocalStorage, setToLocalStorage } from '../../helpers/local-storage';
 import { Repository } from '../../models/Repository';
 import Input from '../../components/Input';
 import { useNavigate } from 'react-router-dom';
 import getValidationError from '../../helpers/validations';
+import { userRequest } from '../../store/modules/user/actions';
 
 interface User {
   id: number;
@@ -26,13 +26,13 @@ interface User {
 }
 
 interface SearchData {
-  search: string;
+  user: string;
 }
 
 export default function Home() {
-  const [search, setSearch] = useState('');
   const [user, setUser] = useState<User>(getFromLocalStorage('@Github:user'));
   const [repositories, setRepositories] = useState<Repository[]>(getFromLocalStorage('@Github:repos'));
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
   const formRef = useRef<FormHandles>(null);
@@ -49,14 +49,9 @@ export default function Home() {
         abortEarly: false
       });
 
-      // await signIn({
-      //   email: data.email,
-      //   password: data.password
-      // });
+      dispatch(userRequest(data.user));
 
-      setUser(userGit.data);
-      setRepositories(reposGit);
-      navigate('../dashboard', { replace: true });
+      // navigate('../dashboard', { replace: true });
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationError(err);
@@ -81,12 +76,7 @@ export default function Home() {
           </header>
 
           <section>
-            <Input
-              name="user"
-              type="text"
-              placeholder="Digite um nome de usuário do Github"
-              onChange={(e) => setSearch(e.target.value)}
-            />
+            <Input name="user" type="text" placeholder="Digite um nome de usuário do Github" />
             <button type="submit">Pesquisar</button>
           </section>
         </Form>
