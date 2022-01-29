@@ -12,7 +12,7 @@ import SvgProfile from '../../assets/SvgProfile';
 // import avatarImg from '../../assets/avatar.png';
 
 export default function Header() {
-  const { name } = useSelector((state: RootStateOrAny) => state.auth);
+  const { name } = useSelector((state: RootStateOrAny) => state.user);
   const [fixed, setFixed] = useState(null);
   const { pathname } = useLocation();
 

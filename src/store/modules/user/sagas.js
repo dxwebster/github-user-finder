@@ -3,6 +3,7 @@ import { userSuccess, userFailure } from './actions';
 import { TYPE_USER_DATA_REQUEST } from '../../../constants/types-reducers';
 import api from '../../../services/api';
 import userDataMapper from '../../../mappers/userDataMapper';
+import { setToLocalStorage } from '../../../helpers/local-storage';
 
 export function* getUser({ payload }) {
   const { user } = payload;
@@ -20,6 +21,9 @@ export function* getUser({ payload }) {
     const { userMapper, reposMapper, starredMapper } = dataWrapper;
 
     yield put(userSuccess(userMapper, reposMapper, starredMapper));
+
+    setToLocalStorage('@Github: user', userMapper);
+    setToLocalStorage('@Github: repos', reposMapper);
   } catch (err) {
     const error = err.result ? err.result : { message: 'Erro ao buscar user.' };
 
