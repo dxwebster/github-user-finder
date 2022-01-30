@@ -18,7 +18,8 @@ export function reposMapper(repos: Respositories, pageNumber: number, totalEleme
   reposWrapper.data.map((repo: any) => {
     return {
       full_name: repo.full_name,
-      description: repo.description
+      description: repo.description,
+      html_url: repo.html_url
     };
   });
 

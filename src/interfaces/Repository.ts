@@ -6,4 +6,5 @@ export interface Respositories {
 export interface Repository {
   full_name: string;
   description?: string;
+  html_url: string;
 }

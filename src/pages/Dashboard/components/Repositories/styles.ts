@@ -1,13 +1,18 @@
 import styled from 'styled-components';
+interface RepositoriesProps {
+  displayList: boolean;
+}
 
 export const Container = styled.div`
   width: 100%;
   overflow: hidden;
 `;
 
-interface RepositoriesProps {
-  displayList: boolean;
-}
+export const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding: 2rem;
+`;
 
 export const RepositoriesList = styled.div<RepositoriesProps>`
   grid-area: content;
@@ -19,17 +24,27 @@ export const RepositoriesList = styled.div<RepositoriesProps>`
   flex-wrap: wrap;
   gap: 1.2rem;
 
-  a {
+  li {
+    width: 100%;
+    min-height: 10rem;
+
     background-color: ${(props) => props.theme.white};
     border-radius: 5px;
     padding: 24px;
-    display: block;
-    text-decoration: none;
 
     display: flex;
     align-items: center;
-    transition: transform 0.2s;
+  }
+
+  a {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     gap: 2rem;
+
+    transition: transform 0.2s;
+    text-decoration: none;
 
     span {
       font-size: 2rem;
@@ -52,12 +67,15 @@ export const RepositoriesList = styled.div<RepositoriesProps>`
       margin-left: auto;
       color: #cbcbd6;
     }
-
-    /* div {
-      margin: 0 16px;
-      flex: 1;
-
-
-    } */
   }
+`;
+
+export const Arrow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.8rem;
+  border: 1px solid ${(props) => props.theme.border};
+  border-radius: 0.5rem;
 `;

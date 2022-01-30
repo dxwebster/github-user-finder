@@ -1,10 +1,19 @@
-import React, { useRef, useEffect, useState, useCallback } from 'react';
+import React, { useRef, useEffect, useState, useCallback, InputHTMLAttributes } from 'react';
 import { useField } from '@unform/core';
 import { FiAlertCircle } from 'react-icons/fi';
 import { Container, Error } from './styles';
 import { INPUT_ERROR, INPUT_FILLED, INPUT_FOCUSED } from '../../constants/validation';
+import { IconBaseProps } from 'react-icons/lib';
 
-export default function Input({ name, ...rest }) {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  name: string;
+  icon?: React.ComponentType<IconBaseProps>;
+  hasValidation: boolean;
+  hasBorder: boolean;
+  inputHeight: string;
+}
+
+export default function Input({ name, icon: Icon, hasValidation, hasBorder, inputHeight, ...rest }: InputProps) {
   const inputRef = useRef(null);
   const [validation, setValidation] = useState('');
   const { fieldName, defaultValue, registerField, error } = useField(name);
@@ -34,7 +43,8 @@ export default function Input({ name, ...rest }) {
   }, []);
 
   return (
-    <Container validation={validation}>
+    <Container validation={hasValidation && validation} hasBorder={hasBorder} inputHeight={inputHeight}>
+      {Icon && <Icon />}
       <input
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}

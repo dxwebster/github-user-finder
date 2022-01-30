@@ -5,6 +5,8 @@ import { INPUT_ERROR, INPUT_FILLED, INPUT_FOCUSED } from '../../constants/valida
 
 interface ContainerProps {
   validation: string;
+  hasBorder: boolean;
+  inputHeight: string;
 }
 
 const returnColorPerType = (props: any) => {
@@ -22,34 +24,42 @@ const returnColorPerType = (props: any) => {
 };
 
 export const Container = styled.div<ContainerProps>`
+  height: ${(props) => props.inputHeight};
   position: relative;
 
-  border: 2px solid;
-  border-color: ${(props) => returnColorPerType(props)};
+  border: ${(props) => (props.hasBorder ? '1px solid' : '2px solid')};
+  border-color: ${(props) => (props.hasBorder ? props.theme.border : returnColorPerType(props))};
 
   background: ${(props) => props.theme.white};
   border-radius: 0.5rem;
-  padding: 1.6rem;
+  padding: 1rem 2rem;
   width: 100%;
 
   display: flex;
   align-items: center;
 
+  color: ${(props) => props.theme.subtitle};
+
   & + div {
     margin-top: 0.8rem;
   }
 
+  svg {
+    margin-right: 1rem;
+  }
+
   input {
-    flex: 1;
+    width: 100%;
     background: transparent;
     border: 0;
     outline: none;
+    font-size: 1.8rem;
+    color: ${(props) => props.theme.subtitle};
 
     &::placeholder {
       color: ${(props) => props.theme.text};
+      font-size: 1.6rem;
     }
-
-    margin-right: 1.6rem;
   }
 `;
 

@@ -60,7 +60,14 @@ export default function Home() {
             </header>
 
             <section>
-              <Input name="user" type="text" placeholder="Digite um nome de usuário do Github" />
+              <Input
+                name="user"
+                type="text"
+                hasValidation={true}
+                placeholder="Digite um nome de usuário do Github"
+                hasBorder={false}
+                inputHeight="6rem"
+              />
               <button type="submit">Pesquisar</button>
             </section>
           </Form>

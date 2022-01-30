@@ -12,6 +12,12 @@ export const Main = styled.main`
   width: 80%;
   margin: 50px auto;
 
+  @media (min-width: 1920px) {
+    & {
+      width: 60%;
+    }
+  }
+
   display: grid;
   gap: 2rem;
   grid-template-columns: 30% 70%;
@@ -20,16 +26,73 @@ export const Main = styled.main`
     'sidenav content';
 `;
 
-export const FilterOptions = styled.div`
+export const ListHeader = styled.div`
   grid-area: nav;
-  display: flex;
+  align-items: center;
   justify-content: space-between;
 
-  ul {
-    display: flex;
+  display: flex;
+  gap: 4rem;
+`;
+
+export const FilterOptions = styled.div`
+  align-items: center;
+  display: flex;
+  gap: 4rem;
+
+  form {
+    width: 50%;
+  }
+`;
+
+export const FilterMenu = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+
+  font-size: 1.4rem;
+  text-align: center;
+
+  a {
+    position: relative;
+    line-height: 5rem;
+    transition: color 0.2s;
+    cursor: pointer;
+
+    &.active {
+      font-weight: bold;
+
+      &::after {
+        content: '';
+        height: 3px;
+        border-radius: 3px 3px 0 0;
+        width: 100%;
+        position: absolute;
+        bottom: 1px;
+        left: 0;
+        background: ${(props) => props.theme.darkOrange};
+      }
+    }
+  }
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  align-self: flex-end;
+`;
+
+export const Button = styled.button<DisplayButtonProps>`
+  display: flex;
+  background-color: ${(props) => (props.active ? props.theme.border : props.theme.white)};
+  padding: 1rem 1.8rem;
+
+  svg {
+    width: 2rem;
+    height: 2rem;
   }
 
-  .list {
+  &.list {
     border-bottom-left-radius: 0.5rem;
     border-top-left-radius: 0.5rem;
 
@@ -38,19 +101,9 @@ export const FilterOptions = styled.div`
     border-bottom: 1px solid ${(props) => props.theme.border};
   }
 
-  .grid {
+  &.grid {
     border-bottom-right-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
     border: 1px solid ${(props) => props.theme.border};
-  }
-`;
-
-export const DisplayButton = styled.button<DisplayButtonProps>`
-  background-color: ${(props) => (props.active ? props.theme.border : props.theme.white)};
-  padding: 1rem 1.8rem;
-
-  svg {
-    width: 2rem;
-    height: 2rem;
   }
 `;

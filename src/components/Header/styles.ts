@@ -20,6 +20,12 @@ export const Container = styled.header`
     justify-content: center;
     position: relative;
 
+    @media (min-width: 1920px) {
+      & {
+        width: 60%;
+      }
+    }
+
     svg {
       width: 80%;
     }

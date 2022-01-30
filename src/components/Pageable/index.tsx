@@ -15,7 +15,7 @@ export default function Pageable({ data, serviceRequest, style }: PageableProps)
   const [showLast, setShowLast] = useState(true);
   const [showFirst, setShowFirst] = useState(false);
 
-  const QUANTITY_PAGES = 2;
+  const QUANTITY_PAGES = 1;
 
   const [currentArrayPages, setCurrentArrayPages] = useState<any>([0]);
 
