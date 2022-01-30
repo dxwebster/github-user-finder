@@ -19,28 +19,18 @@ export default function ProfileCard({ user }) {
 
           <ul>
             <li>
-              {user?.public_repos && (
-                <>
-                  <h1>{user?.public_repos}</h1>
-                  <span>Repositórios</span>
-                </>
-              )}
+              <h1>{user.public_repos || '0'}</h1>
+              <span>Repositórios</span>
             </li>
+
             <li>
-              {user?.following && (
-                <>
-                  <h1>{user.following}</h1>
-                  <span>Seguindo</span>
-                </>
-              )}
+              <h1>{user.following || '0'}</h1>
+              <span>Seguindo</span>
             </li>
+
             <li>
-              {user?.followers && (
-                <>
-                  <h1>{user.followers}</h1>
-                  <span>Seguidores</span>
-                </>
-              )}
+              <h1>{user.followers || '0'}</h1>
+              <span>Seguidores</span>
             </li>
           </ul>
         </UserData>

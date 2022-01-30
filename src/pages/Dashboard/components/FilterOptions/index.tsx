@@ -33,7 +33,15 @@ export default function Options() {
     <Container>
       <FilterContent>
         <Form ref={formRef} onSubmit={handleSubmit}>
-          <Input type="search" name="filter" icon={SvgSearch} hasValidation={false} hasBorder={true} inputHeight="4rem" />
+          <Input
+            type="search"
+            name="filter"
+            icon={SvgSearch}
+            hasValidation={false}
+            hasBorder={true}
+            inputHeight="4rem"
+            placeholder="Busque por repositório"
+          />
         </Form>
 
         <MenuContent>

@@ -70,16 +70,17 @@ export const SearchContent = styled.div`
       width: 100%;
       height: 5rem;
 
-      background: #04d361;
+      background: ${(props) => props.theme.darkOrange};
       border-radius: 0.5rem;
       border: 0;
 
       color: ${(props) => props.theme.white};
       font-weight: bold;
+      font-size: 1.6rem;
       transition: background-color 0.2s;
 
       &:hover {
-        background: ${shade(0.2, '#04d361')};
+        background: ${shade(0.2, '#F25D27')};
       }
     }
   }

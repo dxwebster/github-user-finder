@@ -1,6 +1,7 @@
-import { Respositories } from '../interfaces/Repository';
+import { Respositories, Repository } from '../interfaces/Repository';
 
-export function reposMapper(repos: Respositories, pageNumber: number, totalElements: number) {
+export function reposMapper(repos: Repository[], pageNumber: number, totalElements: number) {
+  console.log('✅ ~ repos', repos);
   const elementsPerPage = 6;
 
   const pageable = {
@@ -10,18 +11,23 @@ export function reposMapper(repos: Respositories, pageNumber: number, totalEleme
     totalPages: Math.round(totalElements / elementsPerPage)
   };
 
-  const reposWrapper: any = {
-    pageable,
-    data: repos
-  };
-
-  reposWrapper.data.map((repo: any) => {
+  const dataMapper = repos.map((repo: any) => {
     return {
       full_name: repo.full_name,
       description: repo.description,
-      html_url: repo.html_url
+      html_url: repo.html_url,
+      stars: repo.stargazers_count,
+      forks: repo.forks_count,
+      watchers: repo.watchers_count
     };
   });
+
+  const reposWrapper: Respositories = {
+    pageable,
+    data: dataMapper
+  };
+
+  console.log('✅ ~ reposWrapper', reposWrapper);
 
   return { reposWrapper };
 }
