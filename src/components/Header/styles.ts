@@ -41,6 +41,7 @@ export const BackButton = styled.div`
     font-size: 14px;
     font-weight: bold;
     gap: 1rem;
+    cursor: pointer;
   }
 `;
 

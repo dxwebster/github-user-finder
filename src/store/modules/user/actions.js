@@ -1,9 +1,9 @@
 import { TYPE_USER_DATA_REQUEST, TYPE_USER_DATA_SUCCESS, TYPE_USER_DATA_FAILURE } from '../../../constants/types-reducers';
 
-export function userRequest(username, pageNumber = 0, size = 5) {
+export function userRequest(username) {
   return {
     type: TYPE_USER_DATA_REQUEST,
-    payload: { username, pageNumber, size }
+    payload: { username }
   };
 }
 
@@ -21,9 +21,36 @@ export function userFailure(error) {
   };
 }
 
-export function setLoading(boolean) {
+export function reposRequest(username, pageNumber = 0) {
   return {
-    type: 'TYPE_LOADING',
+    type: 'TYPE_USER_REPOS_REQUEST',
+    payload: { username, pageNumber }
+  };
+}
+
+export function reposSuccess(repos) {
+  return {
+    type: 'TYPE_USER_REPOS_SUCCESS',
+    payload: { repos }
+  };
+}
+
+export function reposFailure(error) {
+  return {
+    type: 'TYPE_USER_REPOS_FAILURE',
+    payload: error
+  };
+}
+
+export function setLoadingUserSearch(boolean) {
+  return {
+    type: 'TYPE_LOADING_USER_SEARCH',
     payload: boolean
+  };
+}
+
+export function cleanStates() {
+  return {
+    type: 'TYPE_CLEAN_STATES'
   };
 }

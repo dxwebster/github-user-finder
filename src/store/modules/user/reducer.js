@@ -1,9 +1,9 @@
 import { produce } from 'immer';
 
-import { TYPE_USER_DATA_REQUEST, TYPE_USER_DATA_SUCCESS, TYPE_USER_DATA_FAILURE } from '../../../constants/types-reducers';
+import { TYPE_USER_DATA_SUCCESS, TYPE_USER_DATA_FAILURE } from '../../../constants/types-reducers';
 
 export const INITIAL_STATE = {
-  loading: false,
+  loadingUser: false,
   user: null,
   repos: null,
   starred: null
@@ -12,20 +12,31 @@ export const INITIAL_STATE = {
 export function user(state = INITIAL_STATE, action) {
   return produce(state, (draft) => {
     switch (action.type) {
-      case TYPE_USER_DATA_REQUEST: {
-        draft.loading = true;
+      case TYPE_USER_DATA_SUCCESS: {
+        draft.user = action.payload.user;
         break;
       }
 
-      case TYPE_USER_DATA_SUCCESS: {
-        draft.user = action.payload.user;
+      case 'TYPE_USER_REPOS_SUCCESS': {
         draft.repos = action.payload.repos;
-        draft.starred = action.payload.starred;
         break;
       }
 
       case TYPE_USER_DATA_FAILURE: {
-        draft.loading = false;
+        draft.loadingUser = false;
+        break;
+      }
+
+      case 'TYPE_LOADING_USER_SEARCH': {
+        draft.loadingUser = action.payload;
+        break;
+      }
+
+      case 'TYPE_CLEAN_STATES': {
+        draft.loadingUser = INITIAL_STATE.loadingUser;
+        draft.user = INITIAL_STATE.user;
+        draft.repos = INITIAL_STATE.repos;
+        draft.starred = INITIAL_STATE.starred;
         break;
       }
 

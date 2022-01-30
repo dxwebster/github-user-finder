@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import getValidationError from '../../helpers/validations';
 import SvgLoading from '../../assets/SvgLoading';
 
-import { setLoading, userRequest } from '../../store/modules/user/actions';
+import { setLoadingUserSearch, userRequest } from '../../store/modules/user/actions';
 
 interface SearchData {
   user: string;
@@ -21,7 +21,7 @@ export default function Home() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const formRef = useRef<FormHandles>(null);
-  const { loading } = useSelector((state: RootStateOrAny) => state.user);
+  const { loadingUser, user } = useSelector((state: RootStateOrAny) => state.user);
 
   const handleSubmit = useCallback(async (data: SearchData) => {
     try {
@@ -36,6 +36,7 @@ export default function Home() {
       });
 
       dispatch(userRequest(data.user));
+      dispatch(setLoadingUserSearch(true));
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationError(err);
@@ -46,13 +47,8 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (loading) {
-      setTimeout(() => {
-        navigate('../dashboard', { replace: true });
-        dispatch(setLoading(false));
-      }, 2000);
-    }
-  }, [loading]);
+    if (user?.login) navigate('../dashboard', { replace: true });
+  }, [user?.login]);
 
   return (
     <>
@@ -73,7 +69,7 @@ export default function Home() {
 
         <Background />
 
-        {loading && (
+        {loadingUser && (
           <Loading>
             <div>
               <SvgLoading />

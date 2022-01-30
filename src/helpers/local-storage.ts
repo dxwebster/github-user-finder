@@ -7,3 +7,7 @@ export const getFromLocalStorage = (title: string) => {
 export const setToLocalStorage = (title: string, value: any) => {
   localStorage.setItem(title, JSON.stringify(value));
 };
+
+export const cleanLocalStorage = () => {
+  localStorage.clear();
+};

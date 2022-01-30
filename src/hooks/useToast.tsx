@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { createContext, useCallback, useState, useContext } from 'react';
 import { v4 } from 'uuid';
 import Toast from '../components/Toast';
@@ -15,7 +14,7 @@ function ToastProvider({ children }: any) {
       id: v4(),
       type,
       title,
-      description,
+      description
     };
 
     setMessages((state) => [...state, toast]);

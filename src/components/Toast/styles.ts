@@ -18,7 +18,7 @@ const toastTypeVariations = {
   error: css`
     background: #fddede;
     color: #c53030;
-  `,
+  `
 };
 
 export const Container = styled(animated.div)<ContainerProps>`
@@ -39,6 +39,10 @@ export const Container = styled(animated.div)<ContainerProps>`
 
   > svg {
     margin: 4px 12px 0 0;
+  }
+
+  strong {
+    font-size: 1.6rem;
   }
 
   div {
