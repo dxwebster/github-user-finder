@@ -23,24 +23,21 @@ export default function Dashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(reposRequest(user?.login));
-  }, []);
-
-  useEffect(() => {
     const localStorageUser = getFromLocalStorage('@Github: user');
 
-    if (!user?.login) {
-      if (!localStorageUser?.login) {
-        navigate('/', { replace: true });
-        addToast({
-          type: 'error',
-          title: 'Erro',
-          description: 'Para acessar o dashboard, é necessário buscar o usuário antes'
-        });
-      } else {
-        dispatch(userRequest(localStorageUser.login));
-        dispatch(reposRequest(localStorageUser.login));
-      }
+    if (user?.login) {
+      dispatch(reposRequest(user.login));
+      return;
+    } else if (localStorageUser?.login) {
+      dispatch(userRequest(localStorageUser.login));
+    } else {
+      navigate('/', { replace: true });
+      addToast({
+        type: 'error',
+        title: 'Erro',
+        description: 'Para acessar o dashboard, é necessário buscar o usuário antes'
+      });
+      return;
     }
   }, [user?.login]);
 

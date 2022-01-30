@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import getValidationError from '../../helpers/validations';
 import SvgLoading from '../../assets/SvgLoading';
 
-import { setLoadingUserSearch, userRequest } from '../../store/modules/user/actions';
+import { userRequest } from '../../store/modules/user/actions';
 
 interface SearchData {
   user: string;
@@ -36,7 +36,6 @@ export default function Home() {
       });
 
       dispatch(userRequest(data.user));
-      dispatch(setLoadingUserSearch(true));
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationError(err);

@@ -1,6 +1,6 @@
 import { takeLatest, all, put, call } from 'redux-saga/effects';
-import { userSuccess, userFailure, reposSuccess, setLoadingUserSearch } from './actions';
-import { TYPE_USER_DATA_REQUEST } from '../../../constants/types-reducers';
+import { userSuccess, userFailure, reposSuccess, setLoadingUserSearch, reposFailure } from './actions';
+import { TYPE_USER_DATA_REQUEST, TYPE_USER_REPOS_REQUEST } from '../../../constants/types-reducers';
 import api from '../../../services/api';
 import { userMapper } from '../../../mappers/userMapper';
 import { reposMapper } from '../../../mappers/reposMapper';
@@ -42,9 +42,9 @@ export function* getRepos({ payload }) {
   } catch (err) {
     const error = err.result ? err.result : { message: 'Erro ao buscar user.' };
 
-    yield put(userFailure(error));
+    yield put(reposFailure(error));
     alert(error.message);
   }
 }
 
-export default all([takeLatest(TYPE_USER_DATA_REQUEST, getUser), takeLatest('TYPE_USER_REPOS_REQUEST', getRepos)]);
+export default all([takeLatest(TYPE_USER_DATA_REQUEST, getUser), takeLatest(TYPE_USER_REPOS_REQUEST, getRepos)]);

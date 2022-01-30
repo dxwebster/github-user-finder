@@ -1,4 +1,11 @@
-import { TYPE_USER_DATA_REQUEST, TYPE_USER_DATA_SUCCESS, TYPE_USER_DATA_FAILURE } from '../../../constants/types-reducers';
+import {
+  TYPE_USER_DATA_REQUEST,
+  TYPE_USER_DATA_SUCCESS,
+  TYPE_USER_DATA_FAILURE,
+  TYPE_USER_REPOS_REQUEST,
+  TYPE_USER_REPOS_SUCCESS,
+  TYPE_USER_REPOS_FAILURE
+} from '../../../constants/types-reducers';
 
 export function userRequest(username) {
   return {
@@ -23,21 +30,21 @@ export function userFailure(error) {
 
 export function reposRequest(username, pageNumber = 0) {
   return {
-    type: 'TYPE_USER_REPOS_REQUEST',
+    type: TYPE_USER_REPOS_REQUEST,
     payload: { username, pageNumber }
   };
 }
 
 export function reposSuccess(repos) {
   return {
-    type: 'TYPE_USER_REPOS_SUCCESS',
+    type: TYPE_USER_REPOS_SUCCESS,
     payload: { repos }
   };
 }
 
 export function reposFailure(error) {
   return {
-    type: 'TYPE_USER_REPOS_FAILURE',
+    type: TYPE_USER_REPOS_FAILURE,
     payload: error
   };
 }
