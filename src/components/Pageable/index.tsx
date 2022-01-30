@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-
 import { Container, ButtonPage, ButtonArrow } from './styles';
 
 Pageable.displayName = 'src/client/components/Pageable';
@@ -11,8 +10,9 @@ interface PageableProps {
   serviceRequest: any;
   style?: Record<string, unknown>;
 }
+
 export default function Pageable({ data, size, serviceRequest, style }: PageableProps) {
-  const [pageSelected, setPageSelected] = useState(data.page || data.number || data.pageable.pageNumber);
+  const [pageSelected, setPageSelected] = useState(data.page || data.number || data.pageNumber);
   const [arrayPages, setArrayPages] = useState<any>([0]);
   const [showLast, setShowLast] = useState(true);
   const [showFirst, setShowFirst] = useState(false);
@@ -32,14 +32,20 @@ export default function Pageable({ data, size, serviceRequest, style }: Pageable
       setArrayPages(newArrayPages);
     }
 
-    gotoPage(data.page || data.number || data.pageable.pageNumber, newArrayPages);
+    gotoPage(data.pageNumber, newArrayPages);
   }, [data]);
+
+  const gotoPage = (page: number, pages: Array<number>) => {
+    const currentPage = Math.max(0, Math.min(page, data.totalPages));
+    const paginationData = { currentPage, pages };
+
+    onPageChanged(paginationData);
+  };
 
   const onPageChanged = (paginationData: any) => {
     const { currentPage, pages } = paginationData;
 
     setShowLast(false);
-
     setShowFirst(false);
 
     const offset = Math.max(0, currentPage - 1);
@@ -47,9 +53,7 @@ export default function Pageable({ data, size, serviceRequest, style }: Pageable
     let sliceDown = currentPage - QUANTITY_PAGES / 2;
     let sliceUp = currentPage + 1 + QUANTITY_PAGES / 2;
 
-    if (sliceUp < data.totalPages) {
-      setShowLast(true);
-    }
+    if (sliceUp < data.totalPages) setShowLast(true);
 
     if (sliceUp > data.totalPages) {
       sliceDown = sliceDown + data.totalPages - sliceUp;
@@ -70,9 +74,7 @@ export default function Pageable({ data, size, serviceRequest, style }: Pageable
       sliceDown = 0;
     }
 
-    if (sliceDown > 1) {
-      setShowFirst(true);
-    }
+    if (sliceDown > 1) setShowFirst(true);
 
     if (sliceDown - 1 === 0) {
       setShowFirst(false);
@@ -89,19 +91,8 @@ export default function Pageable({ data, size, serviceRequest, style }: Pageable
     setCurrentArrayPages(newCurrentArrayPages);
   };
 
-  const gotoPage = (page: number, pages: Array<number>) => {
-    const currentPage = Math.max(0, Math.min(page, data.totalPages));
-    const paginationData = {
-      currentPage,
-      pages
-    };
-
-    onPageChanged(paginationData);
-  };
-
   const handleClick = (page: number) => gotoPage(page, arrayPages);
   const handleMoveLeft = () => gotoPage(pageSelected - 1, arrayPages);
-
   const handleMoveRight = () => gotoPage(pageSelected + 1, arrayPages);
 
   return (
@@ -152,14 +143,3 @@ export default function Pageable({ data, size, serviceRequest, style }: Pageable
     </Container>
   );
 }
-
-Pageable.propTypes = {
-  data: PropTypes.objectOf(PropTypes.any).isRequired,
-  size: PropTypes.number.isRequired,
-  serviceRequest: PropTypes.func.isRequired,
-  style: PropTypes.objectOf(PropTypes.any)
-};
-
-Pageable.defaultProps = {
-  style: {}
-};

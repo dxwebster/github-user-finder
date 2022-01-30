@@ -1,9 +1,9 @@
 import { TYPE_USER_DATA_REQUEST, TYPE_USER_DATA_SUCCESS, TYPE_USER_DATA_FAILURE } from '../../../constants/types-reducers';
 
-export function userRequest(user) {
+export function userRequest(username, pageNumber = 0, size = 5) {
   return {
     type: TYPE_USER_DATA_REQUEST,
-    payload: { user }
+    payload: { username, pageNumber, size }
   };
 }
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 
 import { Container, Main, FilterOptions, ProfileContainer, DisplayButton } from './styles';
 
@@ -6,18 +7,11 @@ import Header from '../../components/Header';
 import Repositories from '../../components/Repositories';
 import SvgList from '../../assets/SvgList';
 import SvgGrid from '../../assets/SvgGrid';
-import { getFromLocalStorage } from '../../helpers/local-storage';
 
 export default function Dashboard() {
-  const [user, setUser] = useState(null);
-  const [repos, setRepos] = useState(null);
   const [isListActive, setListActive] = useState(true);
   const [isGridActive, setGridActive] = useState(false);
-
-  useEffect(() => {
-    setUser(getFromLocalStorage('@Github: user'));
-    setRepos(getFromLocalStorage('@Github: repos'));
-  }, []);
+  const { repos, user } = useSelector((state: RootStateOrAny) => state.user);
 
   return (
     <Container>

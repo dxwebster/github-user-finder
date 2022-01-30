@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { FiChevronRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 
 import { Container, RepositoriesList } from './styles';
-
 import { Repository } from '../../interfaces/Repository';
 import Pageable from '../Pageable';
+import { userRequest } from '../../store/modules/user/actions';
 
 export default function Repositories({ isListActive, repos }) {
+  const dispatch = useDispatch();
+  const { user } = useSelector((state: RootStateOrAny) => state.user);
+
   return (
     <Container>
       <RepositoriesList displayList={isListActive}>
@@ -24,17 +28,14 @@ export default function Repositories({ isListActive, repos }) {
         ))}
       </RepositoriesList>
 
-      {/* {repos && (
+      {repos?.pageable?.totalPages > 1 && (
         <Pageable
           style={{ justifyContent: 'center', width: '70%' }}
-          data={repos}
-          size={10}
-          serviceRequest={(_, currentPage) => {
-            // setStep(null);
-            // dispatch(findStepsRequest(option.value, textSearch, selectedOperation.value, currentPage));
-          }}
+          data={repos.pageable}
+          size={repos.pageable.size}
+          serviceRequest={(_, currentPage) => dispatch(userRequest(user.login, currentPage))}
         />
-      )} */}
+      )}
     </Container>
   );
 }
