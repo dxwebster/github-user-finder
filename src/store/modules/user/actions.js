@@ -2,9 +2,6 @@ import {
   TYPE_USER_REQUEST,
   TYPE_USER_SUCCESS,
   TYPE_USER_FAILURE,
-  TYPE_USER_REPOS_REQUEST,
-  TYPE_USER_REPOS_SUCCESS,
-  TYPE_USER_REPOS_FAILURE,
   TYPE_USER_LOADING,
   TYPE_USER_CLEAN_STATES
 } from '../../../constants/types-reducers';
@@ -30,27 +27,6 @@ export function userFailure(error) {
   };
 }
 
-export function reposRequest(user, pageNumber = 1, size = 5) {
-  return {
-    type: TYPE_USER_REPOS_REQUEST,
-    payload: { user, pageNumber, size }
-  };
-}
-
-export function reposSuccess(repos) {
-  return {
-    type: TYPE_USER_REPOS_SUCCESS,
-    payload: { repos }
-  };
-}
-
-export function reposFailure(error) {
-  return {
-    type: TYPE_USER_REPOS_FAILURE,
-    payload: error
-  };
-}
-
 export function setLoadingUserSearch(boolean) {
   return {
     type: TYPE_USER_LOADING,
@@ -58,7 +34,7 @@ export function setLoadingUserSearch(boolean) {
   };
 }
 
-export function cleanStates() {
+export function cleanUserStates() {
   return {
     type: TYPE_USER_CLEAN_STATES
   };

@@ -1,4 +1,4 @@
-import { Respositories, Repository } from '../interfaces/Repository';
+import { Respositories } from '../interfaces/Repository';
 
 export function reposMapper(repos: Respositories, pageNumber: number, totalElements: number) {
   const elementsPerPage = 6;

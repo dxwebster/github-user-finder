@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { Container, Main } from './styles';
 
-import { reposRequest, userRequest } from '../../store/modules/user/actions';
+import { userRequest } from '../../store/modules/user/actions';
+import { reposRequest } from '../../store/modules/repos/actions';
 import { getFromLocalStorage } from '../../helpers/local-storage';
 import { useToast } from '../../hooks/useToast';
 
@@ -14,9 +15,8 @@ import ProfileCard from './components/ProfileCard';
 import FilterOptions from './components/FilterOptions';
 
 export default function Dashboard() {
-  const { repos, user } = useSelector((state: RootStateOrAny) => state.user);
-
-  const [isListActive, setListActive] = useState(true);
+  const { user } = useSelector((state: RootStateOrAny) => state.user);
+  const { isListActive, repos } = useSelector((state: RootStateOrAny) => state.repos);
 
   const { addToast } = useToast();
   const dispatch = useDispatch();

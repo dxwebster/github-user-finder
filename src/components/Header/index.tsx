@@ -5,8 +5,10 @@ import { useDispatch } from 'react-redux';
 import { Container, LogoContent, BackButton } from './styles';
 import SvgArrowBack from '../../assets/SvgArrowBack';
 import SvgLogo from '../../assets/SvgLogo';
+
 import { cleanLocalStorage } from '../../helpers/local-storage';
-import { cleanStates } from '../../store/modules/user/actions';
+import { cleanUserStates } from '../../store/modules/user/actions';
+import { cleanReposStates } from '../../store/modules/repos/actions';
 
 export default function Header() {
   const navigate = useNavigate();
@@ -14,7 +16,8 @@ export default function Header() {
 
   function handleBack() {
     cleanLocalStorage();
-    dispatch(cleanStates());
+    dispatch(cleanUserStates());
+    dispatch(cleanReposStates());
 
     navigate('/', { replace: true });
   }

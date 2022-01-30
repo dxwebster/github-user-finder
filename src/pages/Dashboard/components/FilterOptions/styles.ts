@@ -10,9 +10,13 @@ export const Container = styled.div`
 
   display: flex;
   gap: 4rem;
+
+  padding-bottom: 3rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid ${(props) => props.theme.border};
 `;
 
-export const FilterContainer = styled.div`
+export const FilterContent = styled.div`
   align-items: center;
   display: flex;
   gap: 4rem;
@@ -22,18 +26,17 @@ export const FilterContainer = styled.div`
   }
 `;
 
-export const FilterMenu = styled.nav`
+export const MenuContent = styled.nav`
   display: flex;
   justify-content: space-between;
-  align-items: center;
   gap: 2rem;
 
   font-size: 1.4rem;
   text-align: center;
 
-  a {
+  div {
     position: relative;
-    line-height: 5rem;
+    top: -0.5rem;
     transition: color 0.2s;
     cursor: pointer;
 
@@ -43,10 +46,10 @@ export const FilterMenu = styled.nav`
       &::after {
         content: '';
         height: 3px;
-        border-radius: 3px 3px 0 0;
+        border-radius: 0 0 3px 3px;
         width: 100%;
         position: absolute;
-        bottom: 1px;
+        top: 2.5rem;
         left: 0;
         background: ${(props) => props.theme.darkOrange};
       }
@@ -54,7 +57,7 @@ export const FilterMenu = styled.nav`
   }
 `;
 
-export const ButtonContainer = styled.div`
+export const ButtonContent = styled.div`
   display: flex;
   align-self: flex-end;
 `;

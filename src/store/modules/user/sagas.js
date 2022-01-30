@@ -27,22 +27,4 @@ export function* getUser({ payload }) {
   }
 }
 
-export function* getRepos({ payload }) {
-  try {
-    const { user, pageNumber, size } = payload;
-    const { login, public_repos } = user;
-
-    const reposUrl = `/users/${login}/repos?page=${pageNumber}&per_page=${size}`;
-    const reposResponse = yield call(api.get, reposUrl, null);
-    const { reposWrapper } = reposMapper(reposResponse?.data, pageNumber, public_repos);
-
-    yield put(reposSuccess(reposWrapper));
-  } catch (err) {
-    const error = err.result ? err.result : { message: 'Erro ao buscar user.' };
-
-    yield put(reposFailure(error));
-    alert(error.message);
-  }
-}
-
-export default all([takeLatest(TYPE_USER_REQUEST, getUser), takeLatest(TYPE_USER_REPOS_REQUEST, getRepos)]);
+export default all([takeLatest(TYPE_USER_REQUEST, getUser)]);

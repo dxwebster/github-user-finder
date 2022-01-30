@@ -4,7 +4,7 @@ import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 
 import { Container, RepositoriesList, PaginationContainer, Arrow } from './styles';
 
-import { reposRequest } from '../../../../store/modules/user/actions';
+import { reposRequest } from '../../../../store/modules/repos/actions';
 import { Repository } from '../../../../interfaces/Repository';
 import Pageable from '../../../../components/Pageable';
 
