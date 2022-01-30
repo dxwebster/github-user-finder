@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { Container, ButtonPage, ButtonArrow } from './styles';
 
 Pageable.displayName = 'src/client/components/Pageable';
@@ -25,10 +24,9 @@ export default function Pageable({ data, size, serviceRequest, style }: Pageable
     const newArrayPages = [];
 
     if (data && data.totalPages > 0) {
-      for (let page = 0; page < data.totalPages; page += 1) {
+      for (let page = 1; page < data.totalPages + 1; page += 1) {
         newArrayPages.push(page);
       }
-
       setArrayPages(newArrayPages);
     }
 
@@ -97,8 +95,8 @@ export default function Pageable({ data, size, serviceRequest, style }: Pageable
 
   return (
     <Container style={style} hidden={data.totalPages === 1}>
-      <ButtonArrow type="button" onClick={handleMoveLeft} disabled={!(pageSelected > 0)}>
-        {'<<'}
+      <ButtonArrow type="button" onClick={handleMoveLeft} disabled={pageSelected === 1}>
+        {'<'}
       </ButtonArrow>
 
       {showFirst && (
@@ -121,7 +119,7 @@ export default function Pageable({ data, size, serviceRequest, style }: Pageable
           selected={page === pageSelected}
           onClick={() => handleClick(page)}
         >
-          {page + 1}
+          {page}
         </ButtonPage>
       ))}
 
@@ -137,8 +135,8 @@ export default function Pageable({ data, size, serviceRequest, style }: Pageable
         </>
       )}
 
-      <ButtonArrow id="next-pageable" type="button" onClick={handleMoveRight} disabled={!(pageSelected < data.totalPages - 1)}>
-        {'>>'}
+      <ButtonArrow id="next-pageable" type="button" onClick={handleMoveRight} disabled={!(pageSelected < data.totalPages)}>
+        {'>'}
       </ButtonArrow>
     </Container>
   );
