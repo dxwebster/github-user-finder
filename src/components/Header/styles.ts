@@ -14,7 +14,7 @@ export const Container = styled.header`
   color: ${(props) => props.theme.lightGrey};
 
   main {
-    width: 70%;
+    width: 80%;
     display: flex;
     align-items: center;
     justify-content: center;

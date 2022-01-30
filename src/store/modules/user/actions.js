@@ -30,10 +30,10 @@ export function userFailure(error) {
   };
 }
 
-export function reposRequest(username, pageNumber = 1) {
+export function reposRequest(user, pageNumber = 1, size = 5) {
   return {
     type: TYPE_USER_REPOS_REQUEST,
-    payload: { username, pageNumber }
+    payload: { user, pageNumber, size }
   };
 }
 

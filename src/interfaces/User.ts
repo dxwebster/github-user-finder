@@ -8,4 +8,6 @@ export interface User {
   starred_url: string;
   public_repos: number;
   repos_url: string;
+  following: number;
+  followers: number;
 }

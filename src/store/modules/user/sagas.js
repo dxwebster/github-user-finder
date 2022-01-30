@@ -14,8 +14,6 @@ export function* getUser({ payload }) {
 
     const userResponse = yield call(api.get, url, null);
 
-    if (!userResponse.data) return;
-
     const { userWrapper } = userMapper(userResponse.data);
     setToLocalStorage('@Github: user', userWrapper);
 
@@ -31,12 +29,12 @@ export function* getUser({ payload }) {
 
 export function* getRepos({ payload }) {
   try {
-    const { username, pageNumber } = payload;
+    const { user, pageNumber, size } = payload;
+    const { login, public_repos } = user;
 
-    const reposUrl = `/users/${username}/repos?page=${pageNumber}&per_page=5`;
-
+    const reposUrl = `/users/${login}/repos?page=${pageNumber}&per_page=${size}`;
     const reposResponse = yield call(api.get, reposUrl, null);
-    const { reposWrapper } = reposMapper(reposResponse.data, pageNumber);
+    const { reposWrapper } = reposMapper(reposResponse?.data, pageNumber, public_repos);
 
     yield put(reposSuccess(reposWrapper));
   } catch (err) {

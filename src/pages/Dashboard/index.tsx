@@ -2,21 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { Container, Main, FilterOptions, ProfileContainer, DisplayButton } from './styles';
+import { Container, Main, FilterOptions, DisplayButton } from './styles';
 
-import Header from '../../components/Header';
-import Repositories from '../../components/Repositories';
 import SvgList from '../../assets/SvgList';
 import SvgGrid from '../../assets/SvgGrid';
-import { reposRequest, setLoadingUserSearch, userRequest } from '../../store/modules/user/actions';
-import { useToast } from '../../hooks/useToast';
+
+import { reposRequest, userRequest } from '../../store/modules/user/actions';
 import { getFromLocalStorage } from '../../helpers/local-storage';
+import { useToast } from '../../hooks/useToast';
+
+import Header from '../../components/Header';
+import Repositories from './components/Repositories';
+import ProfileCard from './components/ProfileCard';
 
 export default function Dashboard() {
+  const { repos, user } = useSelector((state: RootStateOrAny) => state.user);
+
   const [isListActive, setListActive] = useState(true);
   const [isGridActive, setGridActive] = useState(false);
-
-  const { repos, user } = useSelector((state: RootStateOrAny) => state.user);
 
   const { addToast } = useToast();
   const dispatch = useDispatch();
@@ -26,7 +29,7 @@ export default function Dashboard() {
     const localStorageUser = getFromLocalStorage('@Github: user');
 
     if (user?.login) {
-      dispatch(reposRequest(user.login));
+      dispatch(reposRequest(user));
       return;
     } else if (localStorageUser?.login) {
       dispatch(userRequest(localStorageUser.login));
@@ -79,22 +82,7 @@ export default function Dashboard() {
           </section>
         </FilterOptions>
 
-        <ProfileContainer>
-          {user?.name && (
-            <ul>
-              <li> {user?.name}</li>
-              <li> {user?.login}</li>
-              <li> {user?.bio}</li>
-              <li>
-                <img src={user?.avatar_url} alt="" width={20} />
-              </li>
-              <li> {user?.location}</li>
-              <li> {user?.starred_url}</li>
-              <li> {user?.repos_url}</li>
-            </ul>
-          )}
-        </ProfileContainer>
-
+        {user && <ProfileCard user={user} />}
         {repos && <Repositories isListActive={isListActive} repos={repos} />}
       </Main>
     </Container>

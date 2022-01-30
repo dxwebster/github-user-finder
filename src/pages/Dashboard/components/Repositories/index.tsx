@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 
 import { Container, RepositoriesList } from './styles';
-import { Repository } from '../../interfaces/Repository';
-import Pageable from '../Pageable';
-import { reposRequest } from '../../store/modules/user/actions';
+
+import { reposRequest } from '../../../../store/modules/user/actions';
+import { Repository } from '../../../../interfaces/Repository';
+import Pageable from '../../../../components/Pageable';
 
 export default function Repositories({ isListActive, repos }) {
   const { user } = useSelector((state: RootStateOrAny) => state.user);
@@ -14,6 +15,16 @@ export default function Repositories({ isListActive, repos }) {
 
   return (
     <Container>
+      {repos?.pageable?.totalPages > 1 && (
+        <Pageable
+          style={{ justifyContent: 'center', width: '70%' }}
+          data={repos.pageable}
+          serviceRequest={(_, currentPage) => {
+            dispatch(reposRequest(user, currentPage));
+          }}
+        />
+      )}
+
       <RepositoriesList displayList={isListActive}>
         {repos?.data?.map((repo: Repository) => (
           <section key={repo?.full_name}>
@@ -27,17 +38,6 @@ export default function Repositories({ isListActive, repos }) {
           </section>
         ))}
       </RepositoriesList>
-
-      {repos?.pageable?.totalPages > 1 && (
-        <Pageable
-          style={{ justifyContent: 'center', width: '70%' }}
-          data={repos.pageable}
-          size={repos.pageable.size}
-          serviceRequest={(_, currentPage) => {
-            dispatch(reposRequest(user?.login, currentPage));
-          }}
-        />
-      )}
     </Container>
   );
 }

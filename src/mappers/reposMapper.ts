@@ -1,10 +1,13 @@
 import { Respositories, Repository } from '../interfaces/Repository';
 
-export function reposMapper(repos: Respositories, pageNumber: number) {
+export function reposMapper(repos: Respositories, pageNumber: number, totalElements: number) {
+  const elementsPerPage = 6;
+
   const pageable = {
     pageNumber: pageNumber,
-    totalElements: repos.length,
-    totalPages: repos.length
+    totalElements,
+    elementsPerPage,
+    totalPages: Math.round(totalElements / elementsPerPage)
   };
 
   const reposWrapper: any = {

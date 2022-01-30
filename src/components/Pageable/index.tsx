@@ -5,12 +5,11 @@ Pageable.displayName = 'src/client/components/Pageable';
 
 interface PageableProps {
   data: any;
-  size: number;
   serviceRequest: any;
   style?: Record<string, unknown>;
 }
 
-export default function Pageable({ data, size, serviceRequest, style }: PageableProps) {
+export default function Pageable({ data, serviceRequest, style }: PageableProps) {
   const [pageSelected, setPageSelected] = useState(data.page || data.number || data.pageNumber);
   const [arrayPages, setArrayPages] = useState<any>([0]);
   const [showLast, setShowLast] = useState(true);
@@ -82,7 +81,7 @@ export default function Pageable({ data, size, serviceRequest, style }: Pageable
     const newCurrentArrayPages = pages.slice(sliceDown, sliceUp);
 
     if (currentPage !== pageSelected) {
-      serviceRequest(offset, currentPage, size);
+      serviceRequest(offset, currentPage);
     }
 
     setPageSelected(currentPage);

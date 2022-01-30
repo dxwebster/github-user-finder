@@ -9,7 +9,9 @@ export function userMapper(user: User) {
     login: user.login,
     name: user.name,
     starred_url: user.starred_url,
-    public_repos: user.public_repos
+    public_repos: user.public_repos,
+    following: user.following,
+    followers: user.followers
   };
 
   return { userWrapper };

@@ -9,7 +9,7 @@ export const Container = styled.div`
 `;
 
 export const Main = styled.main`
-  width: 70%;
+  width: 80%;
   margin: 50px auto;
 
   display: grid;
@@ -43,11 +43,6 @@ export const FilterOptions = styled.div`
     border-top-right-radius: 0.5rem;
     border: 1px solid ${(props) => props.theme.border};
   }
-`;
-
-export const ProfileContainer = styled.div`
-  grid-area: sidenav;
-  background-color: ${(props) => props.theme.white};
 `;
 
 export const DisplayButton = styled.button<DisplayButtonProps>`
