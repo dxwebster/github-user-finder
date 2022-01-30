@@ -1,7 +1,7 @@
 import { User } from '../interfaces/User';
-import { Repository } from '../interfaces/Repository';
+import { Respositories, Repository } from '../interfaces/Repository';
 
-export default function userDataMapper(user: User, repos: Repository[], starred: Repository[]) {
+export default function userDataMapper(user: User, repos: Respositories, starred: Repository[]) {
   const userMapper = {
     id: user.id,
     avatar_url: user.avatar_url,
@@ -13,7 +13,33 @@ export default function userDataMapper(user: User, repos: Repository[], starred:
     public_repos: user.public_repos
   };
 
-  const reposMapper = repos.map((repo) => {
+  const pageable = {
+    sort: {
+      sorted: true,
+      unsorted: false,
+      empty: false,
+      offset: 0,
+      pageNumber: 0,
+      pageSize: 10,
+      unpaged: false,
+      paged: true
+    },
+    totalElements: 15,
+    totalPages: 2,
+    last: false,
+    size: 10,
+    number: 0,
+    numberOfElements: 10,
+    first: true,
+    empty: false
+  };
+
+  const reposMapper: any = {
+    pageable,
+    data: repos
+  };
+
+  reposMapper.data.map((repo: any) => {
     return {
       full_name: repo.full_name,
       description: repo.description

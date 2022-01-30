@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { FiChevronRight } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
 
-import { Container, Main, FilterOptions, Repositories, ProfileContainer, DisplayButton } from './styles';
+import { Container, Main, FilterOptions, ProfileContainer, DisplayButton } from './styles';
 
 import Header from '../../components/Header';
+import Repositories from '../../components/Repositories';
 import SvgList from '../../assets/SvgList';
 import SvgGrid from '../../assets/SvgGrid';
-import { Repository } from '../../interfaces/Repository';
 import { getFromLocalStorage } from '../../helpers/local-storage';
 
 export default function Dashboard() {
@@ -75,19 +73,7 @@ export default function Dashboard() {
           )}
         </ProfileContainer>
 
-        <Repositories display={isListActive}>
-          {repos?.map((repo: Repository) => (
-            <section key={repo?.full_name}>
-              <Link to="/dashboard">
-                <div>
-                  <span>{repo?.full_name}</span>
-                  {repo?.description && <p>{repo.description}</p>}
-                </div>
-                <FiChevronRight size={20} />
-              </Link>
-            </section>
-          ))}
-        </Repositories>
+        <Repositories isListActive={isListActive} repos={repos} />
       </Main>
     </Container>
   );

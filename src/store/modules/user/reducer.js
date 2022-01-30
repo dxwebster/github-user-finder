@@ -5,7 +5,7 @@ import { TYPE_USER_DATA_REQUEST, TYPE_USER_DATA_SUCCESS, TYPE_USER_DATA_FAILURE 
 export const INITIAL_STATE = {
   loading: false,
   user: null,
-  repos: [],
+  repos: null,
   starred: null
 };
 
