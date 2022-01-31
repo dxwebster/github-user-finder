@@ -10,18 +10,14 @@ import Pageable from '../../../../components/Pageable';
 import SvgStar from '../../../../assets/SvgStar';
 import SvgFork from '../../../../assets/SvgFork';
 import SvgWatch from '../../../../assets/SvgWatch';
+import { RootStateOrAny, useSelector } from 'react-redux';
 
 export default function Repositories({ isListActive, repos }) {
   const navigate = useNavigate();
 
-  const handleQueryParams = () => {
-    const query = new URLSearchParams(location.search);
-    const queryValue = query.get('username');
-    const queryPage = query.get('page');
-    const querySize = query.get('size');
+  const { user } = useSelector((state: RootStateOrAny) => state.user);
 
-    return { queryValue, queryPage, querySize };
-  };
+  const querySize = 5;
 
   return (
     <Container>
@@ -67,8 +63,7 @@ export default function Repositories({ isListActive, repos }) {
           <Pageable
             data={repos.pageable}
             serviceRequest={(_: any, currentPage: number) => {
-              const { queryValue, querySize } = handleQueryParams();
-              const urlQuery = `/dashboard?username=${queryValue}&page=${currentPage}&size=${querySize}`;
+              const urlQuery = `/dashboard?username=${user.login}&page=${currentPage}&size=${querySize}`;
               navigate(urlQuery, { replace: true });
             }}
           />

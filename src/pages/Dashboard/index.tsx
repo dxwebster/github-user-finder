@@ -12,7 +12,6 @@ import Header from '../../components/Header';
 import Repositories from './components/Repositories';
 import ProfileCard from './components/ProfileCard';
 import FilterOptions from './components/FilterOptions';
-import Pageable from '../../components/Pageable';
 
 export default function Dashboard() {
   const { user } = useSelector((state: RootStateOrAny) => state.user);
@@ -24,11 +23,9 @@ export default function Dashboard() {
   const location = useLocation();
 
   useEffect(() => {
-    console.log(location);
+    const { queryValue } = handleQueryParams();
 
-    const { queryValue, queryPage, querySize } = handleQueryParams();
-
-    if (!queryValue && !queryPage && !querySize) {
+    if (!queryValue) {
       navigate('/', { replace: true });
       addToast({
         type: 'error',
@@ -39,27 +36,22 @@ export default function Dashboard() {
     }
 
     dispatch(userRequest(queryValue));
-    handleReposRequest(queryValue, queryPage, querySize);
-  }, [location]);
+  }, []);
 
   useEffect(() => {
-    if (user) {
+    if (user?.login) {
       const { queryValue, queryPage, querySize } = handleQueryParams();
-      handleReposRequest(queryValue, queryPage, querySize);
+      dispatch(reposRequest(queryValue, queryPage, querySize));
     }
-  }, [user]);
+  }, [location, user]);
 
   const handleQueryParams = () => {
     const query = new URLSearchParams(location.search);
     const queryValue = query.get('username');
-    const queryPage = query.get('page');
-    const querySize = query.get('size');
+    const queryPage = Number(query.get('page'));
+    const querySize = Number(query.get('size'));
 
     return { queryValue, queryPage, querySize };
-  };
-
-  const handleReposRequest = (queryValue: string, queryPage: string, querySize: string) => {
-    dispatch(reposRequest(queryValue, queryPage, querySize));
   };
 
   return (

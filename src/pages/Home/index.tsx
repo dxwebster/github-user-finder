@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useCallback } from 'react';
-import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
+import React, { useRef, useCallback, useState } from 'react';
+import { RootStateOrAny, useSelector } from 'react-redux';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
@@ -10,8 +10,6 @@ import Input from '../../components/Input';
 import { useNavigate } from 'react-router-dom';
 import getValidationError from '../../helpers/validations';
 import SvgLoading from '../../assets/SvgLoading';
-
-import { userRequest } from '../../store/modules/user/actions';
 
 interface SearchData {
   user: string;
@@ -47,7 +45,9 @@ export default function Home() {
   const handleSubmit = useCallback(async (data: SearchData) => {
     const formIsValid = await validForm();
 
-    if (formIsValid) navigate(`../dashboard?username=${data.user}&page=1&size=5`, { replace: true });
+    if (formIsValid) {
+      navigate(`../dashboard?username=${data.user}&page=1&size=5`, { replace: true });
+    }
   }, []);
 
   return (
