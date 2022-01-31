@@ -8,12 +8,6 @@ export const Container = styled.div`
   overflow: hidden;
 `;
 
-export const PaginationContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  padding: 2rem;
-`;
-
 export const RepositoriesList = styled.div<RepositoriesProps>`
   grid-area: content;
 
@@ -105,4 +99,10 @@ export const ArrowContent = styled.div`
     border: 1px solid ${(props) => props.theme.border};
     border-radius: 0.5rem;
   }
+`;
+
+export const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding: 2rem;
 `;

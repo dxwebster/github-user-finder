@@ -1,7 +1,6 @@
 import { Respositories, Repository } from '../interfaces/Repository';
 
 export function reposMapper(repos: Repository[], pageNumber: number, totalElements: number) {
-  console.log('✅ ~ repos', repos);
   const elementsPerPage = 6;
 
   const pageable = {
@@ -26,8 +25,6 @@ export function reposMapper(repos: Repository[], pageNumber: number, totalElemen
     pageable,
     data: dataMapper
   };
-
-  console.log('✅ ~ reposWrapper', reposWrapper);
 
   return { reposWrapper };
 }

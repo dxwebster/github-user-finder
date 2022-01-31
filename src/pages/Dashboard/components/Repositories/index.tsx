@@ -1,10 +1,9 @@
 import React from 'react';
 import { FiChevronRight } from 'react-icons/fi';
-import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 
-import { Container, RepositoriesList, PaginationContainer, TitleContent, ArrowContent, InfosContent } from './styles';
+import { Container, RepositoriesList, TitleContent, ArrowContent, InfosContent, PaginationContainer } from './styles';
 
-import { reposRequest } from '../../../../store/modules/repos/actions';
 import { Repository } from '../../../../interfaces/Repository';
 import Pageable from '../../../../components/Pageable';
 
@@ -13,8 +12,16 @@ import SvgFork from '../../../../assets/SvgFork';
 import SvgWatch from '../../../../assets/SvgWatch';
 
 export default function Repositories({ isListActive, repos }) {
-  const { user } = useSelector((state: RootStateOrAny) => state.user);
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleQueryParams = () => {
+    const query = new URLSearchParams(location.search);
+    const queryValue = query.get('username');
+    const queryPage = query.get('page');
+    const querySize = query.get('size');
+
+    return { queryValue, queryPage, querySize };
+  };
 
   return (
     <Container>
@@ -60,7 +67,9 @@ export default function Repositories({ isListActive, repos }) {
           <Pageable
             data={repos.pageable}
             serviceRequest={(_: any, currentPage: number) => {
-              dispatch(reposRequest(user, currentPage));
+              const { queryValue, querySize } = handleQueryParams();
+              const urlQuery = `/dashboard?username=${queryValue}&page=${currentPage}&size=${querySize}`;
+              navigate(urlQuery, { replace: true });
             }}
           />
         )}

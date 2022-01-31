@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import { Container, Main } from './styles';
 
 import { userRequest } from '../../store/modules/user/actions';
 import { reposRequest } from '../../store/modules/repos/actions';
-import { getFromLocalStorage } from '../../helpers/local-storage';
 import { useToast } from '../../hooks/useToast';
 
 import Header from '../../components/Header';
 import Repositories from './components/Repositories';
 import ProfileCard from './components/ProfileCard';
 import FilterOptions from './components/FilterOptions';
+import Pageable from '../../components/Pageable';
 
 export default function Dashboard() {
   const { user } = useSelector((state: RootStateOrAny) => state.user);
@@ -21,16 +21,14 @@ export default function Dashboard() {
   const { addToast } = useToast();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    const localStorageUser = getFromLocalStorage('@Github: user');
+    console.log(location);
 
-    if (user?.login) {
-      dispatch(reposRequest(user));
-      return;
-    } else if (localStorageUser?.login) {
-      dispatch(userRequest(localStorageUser.login));
-    } else {
+    const { queryValue, queryPage, querySize } = handleQueryParams();
+
+    if (!queryValue && !queryPage && !querySize) {
       navigate('/', { replace: true });
       addToast({
         type: 'error',
@@ -39,7 +37,30 @@ export default function Dashboard() {
       });
       return;
     }
-  }, [user?.login]);
+
+    dispatch(userRequest(queryValue));
+    handleReposRequest(queryValue, queryPage, querySize);
+  }, [location]);
+
+  useEffect(() => {
+    if (user) {
+      const { queryValue, queryPage, querySize } = handleQueryParams();
+      handleReposRequest(queryValue, queryPage, querySize);
+    }
+  }, [user]);
+
+  const handleQueryParams = () => {
+    const query = new URLSearchParams(location.search);
+    const queryValue = query.get('username');
+    const queryPage = query.get('page');
+    const querySize = query.get('size');
+
+    return { queryValue, queryPage, querySize };
+  };
+
+  const handleReposRequest = (queryValue: string, queryPage: string, querySize: string) => {
+    dispatch(reposRequest(queryValue, queryPage, querySize));
+  };
 
   return (
     <Container>

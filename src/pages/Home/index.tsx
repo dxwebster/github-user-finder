@@ -18,36 +18,37 @@ interface SearchData {
 }
 
 export default function Home() {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const formRef = useRef<FormHandles>(null);
-  const { loadingUser, user } = useSelector((state: RootStateOrAny) => state.user);
+  const { loadingUser } = useSelector((state: RootStateOrAny) => state.user);
 
-  const handleSubmit = useCallback(async (data: SearchData) => {
+  const validForm = async () => {
     try {
+      const data = formRef?.current?.getData();
+
       formRef.current?.setErrors({});
 
-      const schema = Yup.object().shape({
-        user: Yup.string().required('User obrigatório')
-      });
+      const schema = Yup.object().shape({ user: Yup.string().required('User obrigatório') });
 
-      await schema.validate(data, {
-        abortEarly: false
-      });
+      await schema.validate(data, { abortEarly: false });
 
-      dispatch(userRequest(data.user));
+      return true;
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationError(err);
         formRef.current?.setErrors(errors);
         return;
       }
-    }
-  }, []);
 
-  useEffect(() => {
-    if (user?.login) navigate('../dashboard', { replace: true });
-  }, [user?.login]);
+      return false;
+    }
+  };
+
+  const handleSubmit = useCallback(async (data: SearchData) => {
+    const formIsValid = await validForm();
+
+    if (formIsValid) navigate(`../dashboard?username=${data.user}&page=1&size=5`, { replace: true });
+  }, []);
 
   return (
     <>

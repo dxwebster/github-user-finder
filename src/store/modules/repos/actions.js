@@ -6,10 +6,10 @@ import {
   TYPE_REPOS_CLEAN_STATES
 } from '../../../constants/types-reducers';
 
-export function reposRequest(user, pageNumber = 1, size = 5) {
+export function reposRequest(username, pageNumber, size) {
   return {
     type: TYPE_USER_REPOS_REQUEST,
-    payload: { user, pageNumber, size }
+    payload: { username, pageNumber, size }
   };
 }
 
