@@ -3013,15 +3013,6 @@ axe-core@^4.3.5:
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.3.5.tgz#78d6911ba317a8262bfee292aeafcc1e04b49cc5"
   integrity sha512-WKTW1+xAzhMS5dJsxWkliixlO/PqC4VhmO9T4juNYcaTg9jzWiJsou6m5pxWYGfigWbwzJWeFY6z47a+4neRXA==
 
-axios-mock-adapter@^1.18.1:
-  version "1.20.0"
-  resolved "https://registry.yarnpkg.com/axios-mock-adapter/-/axios-mock-adapter-1.20.0.tgz#21f5b4b625306f43e8c05673616719da86e20dcb"
-  integrity sha512-shZRhTjLP0WWdcvHKf3rH3iW9deb3UdKbdnKUoHmmsnBhVXN3sjPJM6ZvQ2r/ywgvBVQrMnjrSyQab60G1sr2w==
-  dependencies:
-    fast-deep-equal "^3.1.3"
-    is-blob "^2.1.0"
-    is-buffer "^2.0.5"
-
 axios@*:
   version "0.25.0"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.25.0.tgz#349cfbb31331a9b4453190791760a8d35b093e0a"
@@ -6795,11 +6786,6 @@ is-binary-path@~2.1.0:
   dependencies:
     binary-extensions "^2.0.0"
 
-is-blob@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/is-blob/-/is-blob-2.1.0.tgz#e36cd82c90653f1e1b930f11baf9c64216a05385"
-  integrity sha512-SZ/fTft5eUhQM6oF/ZaASFDEdbFVe89Imltn9uZr03wdKMcWNVYSMjQPFtg05QuNkt5l5c135ElvXEQG0rk4tw==
-
 is-boolean-object@^1.1.0:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/is-boolean-object/-/is-boolean-object-1.1.2.tgz#5c6dc200246dd9321ae4b885a114bb1f75f63719"
@@ -6812,11 +6798,6 @@ is-buffer@^1.1.5:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-1.1.6.tgz#efaa2ea9daa0d7ab2ea13a97b2b8ad51fefbe8be"
   integrity sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==
-
-is-buffer@^2.0.5:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-2.0.5.tgz#ebc252e400d22ff8d77fa09888821a24a658c191"
-  integrity sha512-i2R6zNFDwgEHJyQUtJEk0XFi1i0dPFn/oqjK3/vPCcDeJvW5NQ83V8QbicfF1SupOaB0h8ntgBC2YiE7dfyctQ==
 
 is-callable@^1.1.4, is-callable@^1.2.4:
   version "1.2.4"
@@ -10240,7 +10221,7 @@ react-icons@^4.3.1:
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.3.1.tgz#2fa92aebbbc71f43d2db2ed1aed07361124e91ca"
   integrity sha512-cB10MXLTs3gVuXimblAdI71jrJx8njrJZmNMEMC+sQu5B/BIOmlsAjskdqpn81y8UBVEGuHODd7/ci5DvoSzTQ==
 
-react-is@^16.13.1, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.6:
+react-is@^16.13.1, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
@@ -10348,7 +10329,7 @@ react-scripts@4.0.1:
   optionalDependencies:
     fsevents "^2.1.3"
 
-react-select@*, react-select@^5.2.2:
+react-select@*:
   version "5.2.2"
   resolved "https://registry.yarnpkg.com/react-select/-/react-select-5.2.2.tgz#3d5edf0a60f1276fd5f29f9f90a305f0a25a5189"
   integrity sha512-miGS2rT1XbFNjduMZT+V73xbJEeMzVkJOz727F6MeAr2hKE0uUSA8Ff7vD44H32x2PD3SRB6OXTY/L+fTV3z9w==
@@ -10372,16 +10353,6 @@ react-spring@^9.4.2:
     "@react-spring/three" "~9.4.0"
     "@react-spring/web" "~9.4.0"
     "@react-spring/zdog" "~9.4.0"
-
-react-test-renderer@^16.13.1:
-  version "16.14.0"
-  resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.14.0.tgz#e98360087348e260c56d4fe2315e970480c228ae"
-  integrity sha512-L8yPjqPE5CZO6rKsKXRO/rVPiaCOy0tQQJbC+UjPNlobl5mad59lvPjwFsQHTvL03caVDIVr9x9/OSgDe6I5Eg==
-  dependencies:
-    object-assign "^4.1.1"
-    prop-types "^15.6.2"
-    react-is "^16.8.6"
-    scheduler "^0.19.1"
 
 react-transition-group@^4.3.0:
   version "4.4.2"
@@ -10905,14 +10876,6 @@ saxes@^5.0.1:
   integrity sha512-5LBh1Tls8c9xgGjw3QrMwETmTMVk0oFgvrFSvWx62llR2hcEInrKNZ2GZCCuuy2lvWrdl5jhbpeqc5hRYKFOcw==
   dependencies:
     xmlchars "^2.2.0"
-
-scheduler@^0.19.1:
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.19.1.tgz#4f3e2ed2c1a7d65681f4c854fa8c5a1ccb40f196"
-  integrity sha512-n/zwRWRYSUj0/3g/otKDRPMh6qv2SYMWNq85IEa8iZyAv8od9zDYpGSnpBEjNgcMNq6Scbu5KfIPxNF72R/2EA==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
 
 scheduler@^0.20.2:
   version "0.20.2"

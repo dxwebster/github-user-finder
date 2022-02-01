@@ -12,7 +12,7 @@ export function reposMapper(repos: Repository[], pageNumber: number, totalElemen
 
   const dataMapper = repos.map((repo: any) => {
     return {
-      name: repo.name,
+      name: repo.full_name,
       description: repo.description,
       html_url: repo.html_url,
       stars: repo.stargazers_count,
@@ -32,7 +32,7 @@ export function reposMapper(repos: Repository[], pageNumber: number, totalElemen
 
 export function searchedRepoMapper(repo: any) {
   const searchedRepoWrapper = {
-    name: repo.name,
+    name: repo.full_name,
     description: repo.description,
     html_url: repo.html_url,
     stars: repo.stargazers_count,
