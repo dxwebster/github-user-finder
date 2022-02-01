@@ -12,12 +12,13 @@ export function reposMapper(repos: Repository[], pageNumber: number, totalElemen
 
   const dataMapper = repos.map((repo: any) => {
     return {
-      full_name: repo.full_name,
+      name: repo.name,
       description: repo.description,
       html_url: repo.html_url,
       stars: repo.stargazers_count,
       forks: repo.forks_count,
-      watchers: repo.watchers_count
+      watchers: repo.watchers_count,
+      owner: repo.owner.login
     };
   });
 
@@ -31,12 +32,13 @@ export function reposMapper(repos: Repository[], pageNumber: number, totalElemen
 
 export function searchedRepoMapper(repo: any) {
   const searchedRepoWrapper = {
-    full_name: repo.full_name,
+    name: repo.name,
     description: repo.description,
     html_url: repo.html_url,
     stars: repo.stargazers_count,
     forks: repo.forks_count,
-    watchers: repo.watchers_count
+    watchers: repo.watchers_count,
+    owner: repo.owner.login
   };
 
   return { searchedRepoWrapper };

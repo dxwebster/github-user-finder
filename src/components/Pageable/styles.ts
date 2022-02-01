@@ -13,7 +13,7 @@ export const ButtonPage = styled.button<ButtonPageProps>`
   height: 25px;
   width: 25px;
   margin-right: 0.5rem;
-  background-color: ${(props) => (props.selected ? '#08bfff' : '#f5f5f5')};
+  background-color: ${(props) => (props.selected ? '#F25D27' : '#f5f5f5')};
   color: ${(props) => (props.selected ? '#FFF' : '#666')};
   border: none;
 

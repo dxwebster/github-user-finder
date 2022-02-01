@@ -3,10 +3,11 @@ export interface Respositories {
   data: Repository[];
 }
 export interface Repository {
-  full_name: string;
+  name: string;
   description?: string;
   html_url: string;
   stars: number;
   forks: number;
   watchers: number;
+  owner?: string;
 }

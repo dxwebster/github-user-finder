@@ -45,9 +45,9 @@ export default function Repositories({ isListActive, reposList, pageable }) {
 
         {!notFound &&
           reposList?.map((repo: Repository) => (
-            <a key={repo?.full_name} href={repo.html_url} target="_blank" rel="noreferrer">
+            <a key={repo?.name} href={repo.html_url} target="_blank" rel="noreferrer">
               <TitleContent>
-                <h2>{repo?.full_name}</h2>
+                <h2>{repo?.name}</h2>
                 <p>{repo.description || 'Sem descrição'}</p>
               </TitleContent>
 

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
@@ -16,7 +16,6 @@ import { handleQueryParams, setUrlQuery } from '../../../../helpers/url-search-p
 
 export default function Options() {
   const { isListActive, isGridActive } = useSelector((state: RootStateOrAny) => state.repos);
-  const { user } = useSelector((state: RootStateOrAny) => state.user);
 
   const [searchValue, setSearchValue] = useState('');
   const [isStarred, setIsStarred] = useState(false);
@@ -26,7 +25,9 @@ export default function Options() {
   const navigate = useNavigate();
 
   function handleSubmit() {
-    dispatch(searchRepoRequest(user.login, searchValue));
+    const { queryValue } = handleQueryParams();
+    dispatch(searchRepoRequest(queryValue, searchValue));
+    setIsStarred(false);
   }
 
   function handleReposMenu(type: string) {
@@ -39,6 +40,11 @@ export default function Options() {
 
     setSearchValue('');
   }
+
+  useEffect(() => {
+    const { queryType } = handleQueryParams();
+    if (queryType === 'starred') setIsStarred(true);
+  }, []);
 
   return (
     <Container>

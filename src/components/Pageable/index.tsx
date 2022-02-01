@@ -100,7 +100,7 @@ export default function Pageable({ data, serviceRequest, style }: PageableProps)
 
       {showFirst && (
         <>
-          <ButtonPage type="button" onClick={() => handleClick(0)}>
+          <ButtonPage type="button" onClick={() => handleClick(1)}>
             1
           </ButtonPage>
 
@@ -128,7 +128,7 @@ export default function Pageable({ data, serviceRequest, style }: PageableProps)
             ...
           </ButtonPage>
 
-          <ButtonPage type="button" onClick={() => handleClick(data.totalPages - 1)}>
+          <ButtonPage type="button" onClick={() => handleClick(data.totalPages)}>
             {data.totalPages}
           </ButtonPage>
         </>
