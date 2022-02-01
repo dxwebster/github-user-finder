@@ -3,7 +3,6 @@
 <p align=center> Aplicação que permite a busca por nome de usuários do Github e mostra seus repositórios.
 
 <h3 align=center>
-<img src="readme/example.gif" width=600><br>
 
 💻 **Acesse a aplicação [aqui](https://app-github-user-finder.herokuapp.com/)**
 <br><br>
