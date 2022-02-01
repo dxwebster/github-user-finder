@@ -105,7 +105,11 @@ export const ArrowContent = styled.div`
 export const PaginationContent = styled.div`
   display: flex;
   justify-content: flex-end;
-  padding: 2rem;
+  align-items: center;
+
+  select {
+    margin-top: 1rem;
+  }
 `;
 
 export const MessageContent = styled.div`
