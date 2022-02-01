@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -12,12 +12,12 @@ import Header from '../../components/Header';
 import Repositories from './components/Repositories';
 import ProfileCard from './components/ProfileCard';
 import FilterOptions from './components/FilterOptions';
+import NotFound from './components/NotFound';
 
 export default function Dashboard() {
   const { user } = useSelector((state: RootStateOrAny) => state.user);
-  const { isListActive, repos, filteredRepos } = useSelector((state: RootStateOrAny) => state.repos);
-
-  const [reposList, setReposList] = useState(null);
+  const { isListActive, repos } = useSelector((state: RootStateOrAny) => state.repos);
+  const { notFound } = useSelector((state: RootStateOrAny) => state.user);
 
   const { addToast } = useToast();
   const dispatch = useDispatch();
@@ -41,11 +41,23 @@ export default function Dashboard() {
   }, []);
 
   useEffect(() => {
-    if (user?.login) {
+    if (user?.login && !notFound) {
       const { queryValue, queryPage, querySize } = handleQueryParams();
       dispatch(reposRequest(queryValue, queryPage, querySize));
     }
-  }, [location, user]);
+  }, [location, user, notFound]);
+
+  useEffect(() => {
+    if (notFound) {
+      addToast({
+        type: 'error',
+        title: 'Erro',
+        description: 'Usuário não encontrado. Redirecionando...'
+      });
+
+      setTimeout(() => navigate('/', { replace: true }), 3000);
+    }
+  }, [notFound]);
 
   const handleQueryParams = () => {
     const query = new URLSearchParams(location.search);
@@ -59,10 +71,13 @@ export default function Dashboard() {
   return (
     <Container>
       <Header />
+      {notFound && <NotFound />}
       <Main>
-        <FilterOptions />
-        {user && <ProfileCard user={user} />}
-        {filteredRepos && <Repositories isListActive={isListActive} reposList={filteredRepos} pageable={repos.pageable} />}
+        {repos && <FilterOptions />}
+
+        {!notFound && user && <ProfileCard user={user} />}
+
+        {repos && <Repositories isListActive={isListActive} reposList={repos.data} pageable={repos.pageable} />}
       </Main>
     </Container>
   );

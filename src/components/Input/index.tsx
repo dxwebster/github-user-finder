@@ -11,9 +11,10 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   hasValidation: boolean;
   hasBorder: boolean;
   inputHeight: string;
+  radius?: string;
 }
 
-export default function Input({ name, icon: Icon, hasValidation, hasBorder, inputHeight, ...rest }: InputProps) {
+export default function Input({ name, icon: Icon, hasValidation, hasBorder, inputHeight, radius, ...rest }: InputProps) {
   const inputRef = useRef(null);
   const [validation, setValidation] = useState('');
   const { fieldName, defaultValue, registerField, error } = useField(name);
@@ -43,7 +44,7 @@ export default function Input({ name, icon: Icon, hasValidation, hasBorder, inpu
   }, []);
 
   return (
-    <Container validation={hasValidation && validation} hasBorder={hasBorder} inputHeight={inputHeight}>
+    <Container validation={hasValidation && validation} hasBorder={hasBorder} inputHeight={inputHeight} radius={radius}>
       {Icon && <Icon />}
       <input
         onFocus={handleInputFocus}

@@ -1,28 +1,32 @@
 import {
-  TYPE_USER_REPOS_REQUEST,
-  TYPE_USER_REPOS_SUCCESS,
-  TYPE_USER_REPOS_FAILURE,
+  TYPE_REPOS_REQUEST,
+  TYPE_REPOS_SUCCESS,
+  TYPE_REPOS_FAILURE,
   TYPE_REPOS_SET_DISPLAY,
-  TYPE_REPOS_CLEAN_STATES
+  TYPE_REPOS_CLEAN_STATES,
+  TYPE_REPOS_SEARCH_REQUEST,
+  TYPE_REPOS_SEARCH_SUCCESS,
+  TYPE_REPOS_SEARCH_FAILURE,
+  TYPE_REPOS_FILTER_REPOS
 } from '../../../constants/types-reducers';
 
 export function reposRequest(username, pageNumber = 1, size = 5) {
   return {
-    type: TYPE_USER_REPOS_REQUEST,
+    type: TYPE_REPOS_REQUEST,
     payload: { username, pageNumber, size }
   };
 }
 
 export function reposSuccess(repos) {
   return {
-    type: TYPE_USER_REPOS_SUCCESS,
+    type: TYPE_REPOS_SUCCESS,
     payload: { repos }
   };
 }
 
 export function reposFailure(error) {
   return {
-    type: TYPE_USER_REPOS_FAILURE,
+    type: TYPE_REPOS_FAILURE,
     payload: error
   };
 }
@@ -42,7 +46,28 @@ export function cleanReposStates() {
 
 export function setFilterRepos(filteredRepos) {
   return {
-    type: 'TYPE_REPOS_FILTER_REPOS',
+    type: TYPE_REPOS_FILTER_REPOS,
     payload: { filteredRepos }
+  };
+}
+
+export function searchRepoRequest(username, repoName) {
+  return {
+    type: TYPE_REPOS_SEARCH_REQUEST,
+    payload: { username, repoName }
+  };
+}
+
+export function searchRepoSuccess(repo) {
+  return {
+    type: TYPE_REPOS_SEARCH_SUCCESS,
+    payload: { repo }
+  };
+}
+
+export function searchRepoFailure(error) {
+  return {
+    type: TYPE_REPOS_SEARCH_FAILURE,
+    payload: { error }
   };
 }

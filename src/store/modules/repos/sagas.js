@@ -1,8 +1,8 @@
 import { takeLatest, all, put, call, select } from 'redux-saga/effects';
-import { reposSuccess, reposFailure } from './actions';
-import { TYPE_USER_REPOS_REQUEST } from '../../../constants/types-reducers';
+import { reposSuccess, reposFailure, searchRepoSuccess, searchRepoFailure } from './actions';
+import { TYPE_REPOS_REQUEST, TYPE_REPOS_SEARCH_REQUEST } from '../../../constants/types-reducers';
 import api from '../../../services/api';
-import { reposMapper } from '../../../mappers/reposMapper';
+import { reposMapper, searchedRepoMapper } from '../../../mappers/reposMapper';
 
 export function* getRepos({ payload }) {
   try {
@@ -24,4 +24,21 @@ export function* getRepos({ payload }) {
   }
 }
 
-export default all([takeLatest(TYPE_USER_REPOS_REQUEST, getRepos)]);
+export function* searchByRepoName({ payload }) {
+  try {
+    const { username, repoName } = payload;
+
+    const reposUrl = `/repos/${username}/${repoName}`;
+
+    const reposResponse = yield call(api.get, reposUrl, null);
+
+    const { searchedRepoWrapper } = searchedRepoMapper(reposResponse?.data);
+
+    yield put(searchRepoSuccess(searchedRepoWrapper));
+  } catch (err) {
+    const error = 'Repositório não encontrado.';
+    yield put(searchRepoFailure(error));
+  }
+}
+
+export default all([takeLatest(TYPE_REPOS_REQUEST, getRepos), takeLatest(TYPE_REPOS_SEARCH_REQUEST, searchByRepoName)]);

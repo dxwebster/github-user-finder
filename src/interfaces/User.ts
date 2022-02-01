@@ -10,4 +10,5 @@ export interface User {
   repos_url: string;
   following: number;
   followers: number;
+  html_url: string;
 }

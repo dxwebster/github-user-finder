@@ -22,3 +22,23 @@ export const Main = styled.main`
     'sidenav nav'
     'sidenav content';
 `;
+
+export const FilterOptions = styled.main`
+  background-color: white;
+  grid-area: nav;
+  height: 20rem;
+`;
+
+export const Repositories = styled.main`
+  background-color: white;
+
+  grid-area: content;
+  height: 20rem;
+`;
+
+export const ProfileCard = styled.main`
+  background-color: white;
+
+  grid-area: sidenav;
+  height: 20rem;
+`;

@@ -23,7 +23,7 @@ export function userSuccess(user, repos, starred) {
 export function userFailure(error) {
   return {
     type: TYPE_USER_FAILURE,
-    payload: error
+    payload: { error }
   };
 }
 

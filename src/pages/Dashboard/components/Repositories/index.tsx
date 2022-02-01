@@ -24,52 +24,54 @@ export default function Repositories({ isListActive, reposList, pageable }) {
   const navigate = useNavigate();
 
   const { user } = useSelector((state: RootStateOrAny) => state.user);
+  const { notFound } = useSelector((state: RootStateOrAny) => state.repos);
 
   const querySize = 5;
 
   return (
     <Container>
       <RepositoriesList displayList={isListActive}>
-        {!reposList?.length && <MessageContent>Não há correspondências.</MessageContent>}
+        {notFound && <MessageContent>Repositório não encontrado.</MessageContent>}
 
-        {reposList?.map((repo: Repository) => (
-          <a key={repo?.full_name} href={repo.html_url} target="_blank" rel="noreferrer">
-            <TitleContent>
-              <h2>{repo?.full_name}</h2>
-              <p>{repo.description || 'Sem descrição'}</p>
-            </TitleContent>
+        {!notFound &&
+          reposList?.map((repo: Repository) => (
+            <a key={repo?.full_name} href={repo.html_url} target="_blank" rel="noreferrer">
+              <TitleContent>
+                <h2>{repo?.full_name}</h2>
+                <p>{repo.description || 'Sem descrição'}</p>
+              </TitleContent>
 
-            <InfosContent>
-              <li>
-                <SvgWatch />
-                <span>{repo?.watchers || '0'}</span>
-                <div>Watchs</div>
-              </li>
+              <InfosContent>
+                <li>
+                  <SvgWatch />
+                  <span>{repo?.watchers || '0'}</span>
+                  <div>Watchs</div>
+                </li>
 
-              <li>
-                <SvgStar />
-                <span>{repo?.stars || '0'}</span>
-                <div>Stars</div>
-              </li>
+                <li>
+                  <SvgStar />
+                  <span>{repo?.stars || '0'}</span>
+                  <div>Stars</div>
+                </li>
 
-              <li>
-                <SvgFork />
-                <span>{repo?.forks || '0'}</span>
-                <div>Forks</div>
-              </li>
-            </InfosContent>
+                <li>
+                  <SvgFork />
+                  <span>{repo?.forks || '0'}</span>
+                  <div>Forks</div>
+                </li>
+              </InfosContent>
 
-            <ArrowContent>
-              <div>
-                <FiChevronRight size={20} />
-              </div>
-            </ArrowContent>
-          </a>
-        ))}
+              <ArrowContent>
+                <div>
+                  <FiChevronRight size={20} />
+                </div>
+              </ArrowContent>
+            </a>
+          ))}
       </RepositoriesList>
 
       <PaginationContent>
-        {pageable?.totalPages > 1 && (
+        {!notFound && pageable?.totalPages > 1 && (
           <Pageable
             data={pageable}
             serviceRequest={(_: any, currentPage: number) => {

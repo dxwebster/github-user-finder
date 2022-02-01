@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { shade } from 'polished';
 interface DisplayButtonProps {
   active: boolean;
 }
@@ -9,7 +10,7 @@ export const Container = styled.div`
   justify-content: space-between;
 
   display: flex;
-  gap: 4rem;
+  gap: 2rem;
 
   padding-bottom: 3rem;
   margin-bottom: 1rem;
@@ -17,24 +18,54 @@ export const Container = styled.div`
 `;
 
 export const FilterContent = styled.div`
-  align-items: center;
   display: flex;
-  gap: 4rem;
+  align-items: center;
+
+  gap: 2rem;
 
   form {
-    width: 50%;
+    display: flex;
+
+    input {
+      min-width: 24rem;
+    }
+
+    button {
+      width: 30%;
+      height: 4rem;
+
+      background: ${(props) => props.theme.darkOrange};
+      border-bottom-right-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
+      border: 0;
+      padding: 0 2rem;
+
+      color: ${(props) => props.theme.white};
+      font-weight: bold;
+      font-size: 1.2rem;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background: ${shade(0.2, '#F25D27')};
+      }
+
+      &:disabled {
+        background: ${shade(0.2, '#F25D27')};
+        cursor: not-allowed;
+      }
+    }
   }
 `;
 
 export const MenuContent = styled.nav`
+  width: 30%;
   display: flex;
-  justify-content: space-between;
   gap: 2rem;
 
   font-size: 1.4rem;
   text-align: center;
 
-  div {
+  button {
     position: relative;
     top: -0.5rem;
     transition: color 0.2s;

@@ -18,9 +18,7 @@ export function* getUser({ payload }) {
     yield put(setLoadingUserSearch(false));
   } catch (err) {
     const error = err.result ? err.result : { message: 'Erro ao buscar user.' };
-
     yield put(userFailure(error));
-    alert(error.message);
   }
 }
 
