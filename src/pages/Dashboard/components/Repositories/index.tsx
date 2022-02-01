@@ -19,7 +19,6 @@ import SvgStar from '../../../../assets/SvgStar';
 import SvgFork from '../../../../assets/SvgFork';
 import SvgWatch from '../../../../assets/SvgWatch';
 import { RootStateOrAny, useSelector } from 'react-redux';
-import Select from '../../../../components/Select';
 
 export default function Repositories({ isListActive, reposList, pageable }) {
   const [querySize, setQuerySize] = useState(5);
