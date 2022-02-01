@@ -7,7 +7,10 @@ import {
   TYPE_REPOS_SEARCH_REQUEST,
   TYPE_REPOS_SEARCH_SUCCESS,
   TYPE_REPOS_SEARCH_FAILURE,
-  TYPE_REPOS_FILTER_REPOS
+  TYPE_REPOS_FILTER_REPOS,
+  TYPE_REPOS_STARRED_REQUEST,
+  TYPE_REPOS_STARRED_SUCCESS,
+  TYPE_REPOS_STARRED_FAILURE
 } from '../../../constants/types-reducers';
 
 export function reposRequest(username, pageNumber = 1, size = 6) {
@@ -27,6 +30,27 @@ export function reposSuccess(repos) {
 export function reposFailure(error) {
   return {
     type: TYPE_REPOS_FAILURE,
+    payload: error
+  };
+}
+
+export function starredReposRequest(username, pageNumber = 1, size = 6) {
+  return {
+    type: TYPE_REPOS_STARRED_REQUEST,
+    payload: { username, pageNumber, size }
+  };
+}
+
+export function starredReposSuccess(repos) {
+  return {
+    type: TYPE_REPOS_STARRED_SUCCESS,
+    payload: { repos }
+  };
+}
+
+export function starredReposFailure(error) {
+  return {
+    type: TYPE_REPOS_STARRED_FAILURE,
     payload: error
   };
 }

@@ -18,10 +18,12 @@ export const Container = styled.div`
 `;
 
 export const FilterContent = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
-  gap: 2rem;
+  gap: 4rem;
 
   form {
     display: flex;
@@ -58,18 +60,22 @@ export const FilterContent = styled.div`
 `;
 
 export const MenuContent = styled.nav`
-  width: 30%;
+  width: 40%;
   display: flex;
-  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+
+  gap: 4rem;
 
   font-size: 1.4rem;
   text-align: center;
 
   button {
     position: relative;
-    top: -0.5rem;
+    top: -0.3rem;
     transition: color 0.2s;
     cursor: pointer;
+    font-size: 1.6rem;
 
     &.active {
       font-weight: bold;

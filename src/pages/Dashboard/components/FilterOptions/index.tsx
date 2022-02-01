@@ -10,12 +10,13 @@ import SvgGrid from '../../../../assets/SvgGrid';
 import SvgSearch from '../../../../assets/SvgSearch';
 import Input from '../../../../components/Input';
 
-import { setDisplayRepos, searchRepoRequest, reposRequest } from '../../../../store/modules/repos/actions';
+import { setDisplayRepos, searchRepoRequest, reposRequest, starredReposRequest } from '../../../../store/modules/repos/actions';
 
 export default function Options() {
   const { isListActive, isGridActive, repos } = useSelector((state: RootStateOrAny) => state.repos);
   const { user } = useSelector((state: RootStateOrAny) => state.user);
   const [activeItem, setActiveItem] = useState(true);
+  const [activeStarredItem, setActiveStarredItem] = useState(false);
 
   const [searchValue, setSearchValue] = useState('');
 
@@ -58,24 +59,37 @@ export default function Options() {
             onClick={() => {
               dispatch(reposRequest(user.login));
               setActiveItem(true);
+              setActiveStarredItem(false);
               setSearchValue('');
             }}
             className={activeItem ? 'active' : ''}
           >
             Mostrar todos
           </button>
+
+          <button
+            onClick={() => {
+              dispatch(starredReposRequest(user.login));
+              setActiveStarredItem(true);
+              setActiveItem(false);
+              setSearchValue('');
+            }}
+            className={activeStarredItem ? 'active' : ''}
+          >
+            Starred
+          </button>
         </MenuContent>
+
+        <ButtonContent>
+          <Button active={isListActive} className="list" onClick={() => dispatch(setDisplayRepos(true, false))}>
+            <SvgList />
+          </Button>
+
+          <Button active={isGridActive} className="grid" onClick={() => dispatch(setDisplayRepos(false, true))}>
+            <SvgGrid />
+          </Button>
+        </ButtonContent>
       </FilterContent>
-
-      <ButtonContent>
-        <Button active={isListActive} className="list" onClick={() => dispatch(setDisplayRepos(true, false))}>
-          <SvgList />
-        </Button>
-
-        <Button active={isGridActive} className="grid" onClick={() => dispatch(setDisplayRepos(false, true))}>
-          <SvgGrid />
-        </Button>
-      </ButtonContent>
     </Container>
   );
 }

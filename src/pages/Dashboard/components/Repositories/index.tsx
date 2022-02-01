@@ -21,7 +21,7 @@ import SvgWatch from '../../../../assets/SvgWatch';
 import { RootStateOrAny, useSelector } from 'react-redux';
 
 export default function Repositories({ isListActive, reposList, pageable }) {
-  const [querySize, setQuerySize] = useState('6');
+  const [querySize, setQuerySize] = useState('4');
 
   const { user } = useSelector((state: RootStateOrAny) => state.user);
   const { notFound } = useSelector((state: RootStateOrAny) => state.repos);
