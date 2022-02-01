@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "export ENVIRONMENT=${ENVIRONMENT:=development} NODE_ENV=development && react-scripts start",
-    "build": "export ENVIRONMENT=${ENVIRONMENT:=production} NODE_ENV=production && react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "json-server server.json -p 3333"
