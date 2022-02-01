@@ -5,9 +5,22 @@
 <h3 align=center>
 
 💻 **Acesse a aplicação [aqui](https://app-github-user-finder.herokuapp.com/)**
-<br><br>
 
 </h3>
+
+<p align=center>
+
+<h5 align=center>
+<img src="readme/Home.png" width=600><br>
+
+🎨 Layout por Adriana Ferreira Lima | 
+ [Ver desenho no Figma](https://www.figma.com/file/y1dFBhZTgySq77QlAhJpWg/Github-Find-User?node-id=160%3A2761)
+
+</h5>
+
+</p>
+
+
 
 
 
