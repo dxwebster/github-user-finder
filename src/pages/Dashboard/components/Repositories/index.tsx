@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FiChevronRight } from 'react-icons/fi';
 import { useNavigate } from 'react-router';
 
@@ -19,14 +19,17 @@ import SvgStar from '../../../../assets/SvgStar';
 import SvgFork from '../../../../assets/SvgFork';
 import SvgWatch from '../../../../assets/SvgWatch';
 import { RootStateOrAny, useSelector } from 'react-redux';
+import Select from '../../../../components/Select';
 
 export default function Repositories({ isListActive, reposList, pageable }) {
-  const navigate = useNavigate();
+  const [querySize, setQuerySize] = useState(5);
 
   const { user } = useSelector((state: RootStateOrAny) => state.user);
   const { notFound } = useSelector((state: RootStateOrAny) => state.repos);
 
-  const querySize = 5;
+  const navigate = useNavigate();
+
+  const querySizeList = [5, 10, 15];
 
   return (
     <Container>
@@ -71,6 +74,27 @@ export default function Repositories({ isListActive, reposList, pageable }) {
       </RepositoriesList>
 
       <PaginationContent>
+        {/* <Select
+          style={{ width: '220px', zIndex: '888' }}
+          id="command"
+          baseId="select-consult-search-bar-base-id"
+          name="command"
+          defaultValue={commands[0]}
+          options={commands}
+          onChange={(option: any) => {
+            formRef.current.setFieldValue('command', option);
+            validForm();
+          }}
+        /> */}
+
+        <select name="" id="">
+          {querySizeList.map((size, i) => (
+            <option key={i} onChange={() => setQuerySize(size)}>
+              {size}
+            </option>
+          ))}
+        </select>
+
         {!notFound && pageable?.totalPages > 1 && (
           <Pageable
             data={pageable}

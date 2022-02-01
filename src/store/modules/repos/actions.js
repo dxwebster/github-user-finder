@@ -10,7 +10,7 @@ import {
   TYPE_REPOS_FILTER_REPOS
 } from '../../../constants/types-reducers';
 
-export function reposRequest(username, pageNumber = 1, size = 5) {
+export function reposRequest(username, pageNumber = 1, size = 6) {
   return {
     type: TYPE_REPOS_REQUEST,
     payload: { username, pageNumber, size }
