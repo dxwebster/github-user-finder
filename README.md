@@ -1,6 +1,24 @@
+<h1 align=center> Github User Finder</h1>
+
+<p align=center> Aplicação que permite a busca por nome de usuários do Github e mostra seus repositórios.
+
+<h3 align=center>
+<img src="readme/example.gif" width=600><br>
+
+💻 **Acesse a aplicação [aqui](https://github-explorer-appp.herokuapp.com/)**
+<br><br>
+
+</h3>
+
+
+
 ## Tecnologias utilizadas
 
 - react: `Framework Javascript baseado em componentes`
+
+- typescript: `Linguagem de programação com tipagem estática`
+
+- javascript: `Linguagem de programação com tipagem dinâmica`
 
 - axios: `Cliente HTTP para fazer requisições à API`
 
@@ -8,30 +26,28 @@
 
 - redux: `Controle e gerenciamento de estados`
 
-- redux-saga: `Lida requisições assíncronas`
+- redux-saga: `Suporte para requisições assíncronas`
 
 - react-router-dom: `Roteamento do sistema`
 
-- unform: `API para criação de formulários para React e React Native`
+- unform: `Criação de formulários para React e React Native`
 
 - uuidv4: `Criação de identificadores únicos universais`
 
 - yup: `Construtor de esquemas de validações de formulários`
 
-## Tecnologias utilizadas no desenvolvimento
+- polished: `Ferramenta de estilização css`
 
 - eslint: `Ferramenta de análise de erros em códigos`
 
 - prettier: `Ferramenta de formatação de códigos`
-
-- polished: `Ferramenta de estilização css`
 
 - reactotron: `Ferramenta para inspecionar estados`
 
 
 ## 📥 Execute esse projeto no seu computador
 
-- Clonar Repositório: `git clone https://github.com/dxwebster/github-user-finder-redux.git`
+- Clonar Repositório: `git clone https://github.com/dxwebster/github-user-finder.git`
 - Instalar dependências: `yarn`
 - Rodar Aplicação: `yarn start`
 
