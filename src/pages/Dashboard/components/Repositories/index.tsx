@@ -2,7 +2,15 @@ import React from 'react';
 import { FiChevronRight } from 'react-icons/fi';
 import { useNavigate } from 'react-router';
 
-import { Container, RepositoriesList, TitleContent, ArrowContent, InfosContent, PaginationContainer } from './styles';
+import {
+  Container,
+  RepositoriesList,
+  TitleContent,
+  ArrowContent,
+  InfosContent,
+  PaginationContent,
+  MessageContent
+} from './styles';
 
 import { Repository } from '../../../../interfaces/Repository';
 import Pageable from '../../../../components/Pageable';
@@ -22,6 +30,8 @@ export default function Repositories({ isListActive, reposList, pageable }) {
   return (
     <Container>
       <RepositoriesList displayList={isListActive}>
+        {!reposList?.length && <MessageContent>Não há correspondências.</MessageContent>}
+
         {reposList?.map((repo: Repository) => (
           <a key={repo?.full_name} href={repo.html_url} target="_blank" rel="noreferrer">
             <TitleContent>
@@ -58,7 +68,7 @@ export default function Repositories({ isListActive, reposList, pageable }) {
         ))}
       </RepositoriesList>
 
-      <PaginationContainer>
+      <PaginationContent>
         {pageable?.totalPages > 1 && (
           <Pageable
             data={pageable}
@@ -68,7 +78,7 @@ export default function Repositories({ isListActive, reposList, pageable }) {
             }}
           />
         )}
-      </PaginationContainer>
+      </PaginationContent>
     </Container>
   );
 }

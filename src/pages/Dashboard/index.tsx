@@ -47,10 +47,6 @@ export default function Dashboard() {
     }
   }, [location, user]);
 
-  useEffect(() => {
-    if (filteredRepos) console.log('✅ ~ filteredRepos', filteredRepos);
-  }, [filteredRepos]);
-
   const handleQueryParams = () => {
     const query = new URLSearchParams(location.search);
     const queryValue = query.get('username');

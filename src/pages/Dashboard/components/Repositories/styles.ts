@@ -6,7 +6,7 @@ interface RepositoriesProps {
 export const Container = styled.div`
   width: 100%;
   overflow: hidden;
-  min-height: 20rem;
+  min-height: 40rem;
 `;
 
 export const RepositoriesList = styled.div<RepositoriesProps>`
@@ -102,8 +102,20 @@ export const ArrowContent = styled.div`
   }
 `;
 
-export const PaginationContainer = styled.div`
+export const PaginationContent = styled.div`
   display: flex;
   justify-content: flex-end;
   padding: 2rem;
+`;
+
+export const MessageContent = styled.div`
+  width: 100%;
+  overflow: hidden;
+  min-height: 40rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.6rem;
 `;
