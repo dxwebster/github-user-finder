@@ -34,14 +34,15 @@ export function setDisplayRepos(list, grid) {
   };
 }
 
-export function setActiveItem(boolean) {
-  return {
-    type: 'TYPE_REPOS_SET_ACTIVE_ITEM'
-  };
-}
-
 export function cleanReposStates() {
   return {
     type: TYPE_REPOS_CLEAN_STATES
+  };
+}
+
+export function setFilterRepos(filteredRepos) {
+  return {
+    type: 'TYPE_REPOS_FILTER_REPOS',
+    payload: { filteredRepos }
   };
 }

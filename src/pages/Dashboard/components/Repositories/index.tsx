@@ -12,7 +12,7 @@ import SvgFork from '../../../../assets/SvgFork';
 import SvgWatch from '../../../../assets/SvgWatch';
 import { RootStateOrAny, useSelector } from 'react-redux';
 
-export default function Repositories({ isListActive, repos }) {
+export default function Repositories({ isListActive, reposList, pageable }) {
   const navigate = useNavigate();
 
   const { user } = useSelector((state: RootStateOrAny) => state.user);
@@ -22,7 +22,7 @@ export default function Repositories({ isListActive, repos }) {
   return (
     <Container>
       <RepositoriesList displayList={isListActive}>
-        {repos?.data?.map((repo: Repository) => (
+        {reposList?.map((repo: Repository) => (
           <a key={repo?.full_name} href={repo.html_url} target="_blank" rel="noreferrer">
             <TitleContent>
               <h2>{repo?.full_name}</h2>
@@ -59,9 +59,9 @@ export default function Repositories({ isListActive, repos }) {
       </RepositoriesList>
 
       <PaginationContainer>
-        {repos?.pageable?.totalPages > 1 && (
+        {pageable?.totalPages > 1 && (
           <Pageable
-            data={repos.pageable}
+            data={pageable}
             serviceRequest={(_: any, currentPage: number) => {
               const urlQuery = `/dashboard?username=${user.login}&page=${currentPage}&size=${querySize}`;
               navigate(urlQuery, { replace: true });

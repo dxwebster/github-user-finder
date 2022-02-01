@@ -6,6 +6,7 @@ interface RepositoriesProps {
 export const Container = styled.div`
   width: 100%;
   overflow: hidden;
+  min-height: 20rem;
 `;
 
 export const RepositoriesList = styled.div<RepositoriesProps>`

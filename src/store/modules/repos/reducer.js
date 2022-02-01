@@ -12,6 +12,7 @@ import {
 export const INITIAL_STATE = {
   loadingRepos: false,
   repos: null,
+  filteredRepos: null,
   isListActive: true,
   isGridActive: false
 };
@@ -25,6 +26,7 @@ export function repos(state = INITIAL_STATE, action) {
       }
       case TYPE_USER_REPOS_SUCCESS: {
         draft.repos = action.payload.repos;
+        draft.filteredRepos = action.payload.repos.data;
         break;
       }
       case TYPE_USER_REPOS_FAILURE: {
@@ -32,7 +34,11 @@ export function repos(state = INITIAL_STATE, action) {
         break;
       }
       case TYPE_USER_REPOS_LOADING: {
-        draft.loadingRepos = action.payload;
+        draft.repos = action.payload.repos;
+        break;
+      }
+      case 'TYPE_REPOS_FILTER_REPOS': {
+        draft.filteredRepos = action.payload.filteredRepos;
         break;
       }
       case TYPE_REPOS_SET_DISPLAY: {

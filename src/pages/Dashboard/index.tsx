@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -15,7 +15,9 @@ import FilterOptions from './components/FilterOptions';
 
 export default function Dashboard() {
   const { user } = useSelector((state: RootStateOrAny) => state.user);
-  const { isListActive, repos } = useSelector((state: RootStateOrAny) => state.repos);
+  const { isListActive, repos, filteredRepos } = useSelector((state: RootStateOrAny) => state.repos);
+
+  const [reposList, setReposList] = useState(null);
 
   const { addToast } = useToast();
   const dispatch = useDispatch();
@@ -45,6 +47,10 @@ export default function Dashboard() {
     }
   }, [location, user]);
 
+  useEffect(() => {
+    if (filteredRepos) console.log('✅ ~ filteredRepos', filteredRepos);
+  }, [filteredRepos]);
+
   const handleQueryParams = () => {
     const query = new URLSearchParams(location.search);
     const queryValue = query.get('username');
@@ -60,7 +66,7 @@ export default function Dashboard() {
       <Main>
         <FilterOptions />
         {user && <ProfileCard user={user} />}
-        {repos && <Repositories isListActive={isListActive} repos={repos} />}
+        {filteredRepos && <Repositories isListActive={isListActive} reposList={filteredRepos} pageable={repos.pageable} />}
       </Main>
     </Container>
   );
