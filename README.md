@@ -5,7 +5,7 @@
 <h3 align=center>
 <img src="readme/example.gif" width=600><br>
 
-💻 **Acesse a aplicação [aqui](https://github-explorer-appp.herokuapp.com/)**
+💻 **Acesse a aplicação [aqui](https://github-user-finder-redux.herokuapp.com/)**
 <br><br>
 
 </h3>
