@@ -38,7 +38,6 @@
     "react-redux": "^7.2.2",
     "react-router-dom": "^6.1.1",
     "react-scripts": "4.0.1",
-    "react-spring": "^9.3.0",
     "reactotron-react-js": "^3.3.7",
     "reactotron-redux": "^3.1.3",
     "reactotron-redux-saga": "^4.2.3",
@@ -47,7 +46,19 @@
     "styled-components": "^5.2.1",
     "typescript": "^4.3.4",
     "uuid": "^8.3.2",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "eslint": "^7.11.0",
+    "eslint-config-next": "12.0.7",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-import-resolver-webpack": "^0.13.2",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4",
+    "identity-obj-proxy": "^3.0.0",
+    "prettier": "^2.5.1"
   },
   "devDependencies": {
     "@svgr/cli": "^5.5.0",
@@ -61,18 +72,6 @@
     "@typescript-eslint/eslint-plugin": "^4.28.0",
     "@typescript-eslint/parser": "^5.7.0",
     "axios-mock-adapter": "^1.18.1",
-    "eslint": "^7.11.0",
-    "eslint-config-next": "12.0.7",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-import-resolver-typescript": "^2.5.0",
-    "eslint-import-resolver-webpack": "^0.13.2",
-    "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.21.5",
-    "eslint-plugin-react-hooks": "^4",
-    "identity-obj-proxy": "^3.0.0",
-    "prettier": "^2.5.1",
     "react-test-renderer": "^16.13.1"
   }
 }
