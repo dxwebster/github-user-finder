@@ -11,7 +11,7 @@
     "sourceType": "module"
   },
 
-  "plugins": ["react", "prettier", "import", "@typescript-eslint"],
+  "plugins": ["react", "import", "@typescript-eslint"],
 
   "extends": [
     "eslint:recommended",
