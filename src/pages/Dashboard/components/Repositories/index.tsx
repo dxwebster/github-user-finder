@@ -21,7 +21,7 @@ import SvgWatch from '../../../../assets/SvgWatch';
 import { RootStateOrAny, useSelector } from 'react-redux';
 
 export default function Repositories({ isListActive, reposList, pageable }) {
-  const [querySize, setQuerySize] = useState('5');
+  const [querySize, setQuerySize] = useState('6');
 
   const { user } = useSelector((state: RootStateOrAny) => state.user);
   const { notFound } = useSelector((state: RootStateOrAny) => state.repos);
@@ -29,9 +29,9 @@ export default function Repositories({ isListActive, reposList, pageable }) {
   const navigate = useNavigate();
 
   const querySizeList = [
-    { value: 5, label: 5 },
-    { value: 10, label: 10 },
-    { value: 15, label: 15 }
+    { value: 4, label: 4 },
+    { value: 6, label: 6 },
+    { value: 8, label: 8 }
   ];
 
   useEffect(() => {

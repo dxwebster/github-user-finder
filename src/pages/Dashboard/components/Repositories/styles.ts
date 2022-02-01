@@ -14,7 +14,7 @@ export const RepositoriesList = styled.div<RepositoriesProps>`
 
   display: ${(props) => (props.displayList ? 'flex' : 'grid')};
   flex-direction: ${(props) => (props.displayList ? 'column' : 'row')};
-  grid-template-columns: ${(props) => !props.displayList && '1fr 1fr 1fr'};
+  grid-template-columns: ${(props) => !props.displayList && '1fr 1fr'};
   align-content: space-between;
   gap: 1.2rem;
 
