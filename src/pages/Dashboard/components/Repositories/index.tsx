@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FiChevronRight } from 'react-icons/fi';
 import { useNavigate } from 'react-router';
+import Select from 'react-select';
 
 import {
   Container,
@@ -29,6 +30,12 @@ export default function Repositories({ isListActive, reposList, pageable }) {
   const navigate = useNavigate();
 
   const querySizeList = [5, 10, 15];
+
+  const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' }
+  ];
 
   return (
     <Container>
@@ -73,6 +80,8 @@ export default function Repositories({ isListActive, reposList, pageable }) {
       </RepositoriesList>
 
       <PaginationContent>
+        <Select options={options} />
+
         {/* <Select
           style={{ width: '220px', zIndex: '888' }}
           id="command"
