@@ -4,20 +4,14 @@
     "es2021": true
   },
 
-  "parser": "@typescript-eslint/parser", // @typescript-eslint/parser
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": { "jsx": true },
     "ecmaVersion": 13,
     "sourceType": "module"
   },
 
-  // Plugins de ESLint instalados
-  "plugins": [
-    "react", // eslint-plugin-react@latest
-    "prettier", // eslint-config-prettier eslint-plugin-prettier
-    "import", // eslint-plugin-import@latest eslint-import-resolver-typescript@latest
-    "@typescript-eslint" // @typescript-eslint/eslint-plugin@latest @typescript-eslint/parser@latest
-  ],
+  "plugins": ["react", "prettier", "import", "@typescript-eslint"],
 
   "extends": [
     "eslint:recommended",
