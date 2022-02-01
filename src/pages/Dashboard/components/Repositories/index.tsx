@@ -32,9 +32,9 @@ export default function Repositories({ isListActive, reposList, pageable }) {
   const querySizeList = [5, 10, 15];
 
   const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
+    { value: 5, label: 5 },
+    { value: 10, label: 10 },
+    { value: 15, label: 15 }
   ];
 
   return (
@@ -80,20 +80,12 @@ export default function Repositories({ isListActive, reposList, pageable }) {
       </RepositoriesList>
 
       <PaginationContent>
-        <Select options={options} />
-
-        {/* <Select
-          style={{ width: '220px', zIndex: '888' }}
-          id="command"
-          baseId="select-consult-search-bar-base-id"
-          name="command"
-          defaultValue={commands[0]}
-          options={commands}
+        <Select
+          options={options}
           onChange={(option: any) => {
-            formRef.current.setFieldValue('command', option);
-            validForm();
+            setQuerySize(option);
           }}
-        /> */}
+        />
 
         <select name="" id="">
           {querySizeList.map((size, i) => (
