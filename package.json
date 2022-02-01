@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "eslint-plugin-prettier": "^4.0.0",
     "@types/js-cookie": "^3.0.1",
     "@types/yup": "^0.29.13",
     "@unform/core": "^2.1.6",
