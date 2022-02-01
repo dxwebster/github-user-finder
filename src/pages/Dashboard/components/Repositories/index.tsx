@@ -14,6 +14,7 @@ import {
 
 import { Repository } from '../../../../interfaces/Repository';
 import Pageable from '../../../../components/Pageable';
+import { handleQueryParams, setUrlQuery } from '../../../../helpers/url-search-params';
 
 import SvgStar from '../../../../assets/SvgStar';
 import SvgFork from '../../../../assets/SvgFork';
@@ -21,11 +22,8 @@ import SvgWatch from '../../../../assets/SvgWatch';
 import { RootStateOrAny, useSelector } from 'react-redux';
 
 export default function Repositories({ isListActive, reposList, pageable }) {
-  const [querySize, setQuerySize] = useState('4');
-
-  const { user } = useSelector((state: RootStateOrAny) => state.user);
+  const [elementsPerPage, setElementsPerPage] = useState(4);
   const { notFound } = useSelector((state: RootStateOrAny) => state.repos);
-
   const navigate = useNavigate();
 
   const querySizeList = [
@@ -35,13 +33,10 @@ export default function Repositories({ isListActive, reposList, pageable }) {
   ];
 
   useEffect(() => {
-    const query = new URLSearchParams(location.search);
-    const queryPage = Number(query.get('page'));
-
-    const urlQuery = `/dashboard?username=${user.login}&page=${queryPage}&size=${querySize}`;
-
+    const { queryValue, queryPage, queryType } = handleQueryParams();
+    const { urlQuery } = setUrlQuery(queryValue, queryPage, elementsPerPage, queryType);
     navigate(urlQuery, { replace: true });
-  }, [querySize]);
+  }, [elementsPerPage]);
 
   return (
     <Container>
@@ -86,7 +81,7 @@ export default function Repositories({ isListActive, reposList, pageable }) {
       </RepositoriesList>
 
       <PaginationContent>
-        <select onChange={(e) => setQuerySize(e.target.value)}>
+        <select onChange={(e) => setElementsPerPage(Number(e.target.value))}>
           {querySizeList.map((size) => (
             <option key={size.value} value={size.value}>
               {size.label}
@@ -94,11 +89,12 @@ export default function Repositories({ isListActive, reposList, pageable }) {
           ))}
         </select>
 
-        {!notFound && pageable?.totalPages > 1 && querySize && (
+        {!notFound && pageable?.totalPages > 1 && elementsPerPage && (
           <Pageable
             data={pageable}
             serviceRequest={(_: any, currentPage: number) => {
-              const urlQuery = `/dashboard?username=${user.login}&page=${currentPage}&size=${querySize}`;
+              const { queryValue, queryType } = handleQueryParams();
+              const { urlQuery } = setUrlQuery(queryValue, currentPage, elementsPerPage, queryType);
               navigate(urlQuery, { replace: true });
             }}
           />

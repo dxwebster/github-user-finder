@@ -1,7 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 
 import { Container, FilterContent, ButtonContent, Button, MenuContent } from './styles';
 
@@ -10,28 +11,34 @@ import SvgGrid from '../../../../assets/SvgGrid';
 import SvgSearch from '../../../../assets/SvgSearch';
 import Input from '../../../../components/Input';
 
-import { setDisplayRepos, searchRepoRequest, reposRequest, starredReposRequest } from '../../../../store/modules/repos/actions';
+import { setDisplayRepos, searchRepoRequest } from '../../../../store/modules/repos/actions';
+import { handleQueryParams, setUrlQuery } from '../../../../helpers/url-search-params';
 
 export default function Options() {
-  const { isListActive, isGridActive, repos } = useSelector((state: RootStateOrAny) => state.repos);
+  const { isListActive, isGridActive } = useSelector((state: RootStateOrAny) => state.repos);
   const { user } = useSelector((state: RootStateOrAny) => state.user);
-  const [activeItem, setActiveItem] = useState(true);
-  const [activeStarredItem, setActiveStarredItem] = useState(false);
 
   const [searchValue, setSearchValue] = useState('');
+  const [isStarred, setIsStarred] = useState(false);
 
   const formRef = useRef<FormHandles>(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function handleSubmit() {
     dispatch(searchRepoRequest(user.login, searchValue));
   }
 
-  useEffect(() => {
-    if (repos?.data?.length === 1) {
-      setActiveItem(false);
-    }
-  }, [repos?.data]);
+  function handleReposMenu(type: string) {
+    const { queryValue, queryPage, querySize } = handleQueryParams();
+    const { urlQuery } = setUrlQuery(queryValue, queryPage, querySize, type);
+    navigate(urlQuery, { replace: true });
+
+    if (type === 'starred') setIsStarred(true);
+    if (type === 'all') setIsStarred(false);
+
+    setSearchValue('');
+  }
 
   return (
     <Container>
@@ -55,27 +62,11 @@ export default function Options() {
         </Form>
 
         <MenuContent>
-          <button
-            onClick={() => {
-              dispatch(reposRequest(user.login));
-              setActiveItem(true);
-              setActiveStarredItem(false);
-              setSearchValue('');
-            }}
-            className={activeItem ? 'active' : ''}
-          >
+          <button onClick={() => handleReposMenu('all')} disabled={!isStarred} className={!isStarred ? 'active' : ''}>
             Mostrar todos
           </button>
 
-          <button
-            onClick={() => {
-              dispatch(starredReposRequest(user.login));
-              setActiveStarredItem(true);
-              setActiveItem(false);
-              setSearchValue('');
-            }}
-            className={activeStarredItem ? 'active' : ''}
-          >
+          <button onClick={() => handleReposMenu('starred')} disabled={isStarred} className={isStarred ? 'active' : ''}>
             Starred
           </button>
         </MenuContent>

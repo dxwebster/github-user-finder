@@ -9,17 +9,14 @@ import {
   TYPE_REPOS_CLEAN_STATES,
   TYPE_REPOS_SEARCH_REQUEST,
   TYPE_REPOS_SEARCH_SUCCESS,
-  TYPE_REPOS_SEARCH_FAILURE,
-  TYPE_REPOS_STARRED_REQUEST,
-  TYPE_REPOS_STARRED_SUCCESS,
-  TYPE_REPOS_STARRED_FAILURE
+  TYPE_REPOS_SEARCH_FAILURE
 } from '../../../constants/types-reducers';
 
 export const INITIAL_STATE = {
   loadingRepos: false,
   repos: null,
-  starredRepos: null,
   notFound: false,
+
   isListActive: true,
   isGridActive: false
 };
@@ -27,7 +24,6 @@ export const INITIAL_STATE = {
 export function repos(state = INITIAL_STATE, action) {
   return produce(state, (draft) => {
     switch (action.type) {
-      // Mesu Repos
       case TYPE_REPOS_REQUEST: {
         draft.loadingRepos = true;
         break;
@@ -43,24 +39,6 @@ export function repos(state = INITIAL_STATE, action) {
         break;
       }
 
-      // Starred Repos
-      case TYPE_REPOS_STARRED_REQUEST: {
-        draft.loadingRepos = true;
-        break;
-      }
-
-      case TYPE_REPOS_STARRED_SUCCESS: {
-        draft.starredRepos = action.payload.repos;
-        draft.notFound = false;
-        break;
-      }
-      case TYPE_REPOS_STARRED_FAILURE: {
-        draft.loadingRepos = false;
-        draft.notFound = true;
-        break;
-      }
-
-      // Search Repo
       case TYPE_REPOS_SEARCH_REQUEST: {
         draft.loadingRepos = true;
         break;

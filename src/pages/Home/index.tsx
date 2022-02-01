@@ -50,7 +50,7 @@ export default function Home() {
     const formIsValid = await validForm();
 
     if (formIsValid) {
-      navigate(`../dashboard?username=${data.user}&page=1&size=6`, { replace: true });
+      navigate(`../dashboard?username=${data.user}&page=1&size=4&type=all`, { replace: true });
     }
   }, []);
 

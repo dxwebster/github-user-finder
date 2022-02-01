@@ -27,9 +27,10 @@ export const FilterContent = styled.div`
 
   form {
     display: flex;
+    width: 100%;
 
     input {
-      min-width: 24rem;
+      width: 100%;
     }
 
     button {
@@ -76,6 +77,7 @@ export const MenuContent = styled.nav`
     transition: color 0.2s;
     cursor: pointer;
     font-size: 1.6rem;
+    white-space: nowrap;
 
     &.active {
       font-weight: bold;

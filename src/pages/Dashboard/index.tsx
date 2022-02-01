@@ -7,6 +7,7 @@ import { Container, Main } from './styles';
 import { userRequest } from '../../store/modules/user/actions';
 import { reposRequest } from '../../store/modules/repos/actions';
 import { useToast } from '../../hooks/useToast';
+import { handleQueryParams } from '../../helpers/url-search-params';
 
 import Header from '../../components/Header';
 import Repositories from './components/Repositories';
@@ -42,10 +43,10 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (user?.login && !notFound) {
-      const { queryValue, queryPage, querySize } = handleQueryParams();
-      dispatch(reposRequest(queryValue, queryPage, querySize));
+      const { queryValue, queryPage, querySize, queryType } = handleQueryParams();
+      dispatch(reposRequest(queryValue, queryPage, querySize, queryType));
     }
-  }, [location, user, notFound]);
+  }, [location, user?.login, notFound]);
 
   useEffect(() => {
     if (notFound) {
@@ -58,15 +59,6 @@ export default function Dashboard() {
       setTimeout(() => navigate('/', { replace: true }), 3000);
     }
   }, [notFound]);
-
-  const handleQueryParams = () => {
-    const query = new URLSearchParams(location.search);
-    const queryValue = query.get('username');
-    const queryPage = Number(query.get('page'));
-    const querySize = Number(query.get('size'));
-
-    return { queryValue, queryPage, querySize };
-  };
 
   return (
     <Container>
