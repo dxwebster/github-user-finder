@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { shade } from 'polished';
 interface RepositoriesProps {
   displayList: boolean;
 }
@@ -106,10 +107,6 @@ export const PaginationContent = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-
-  select {
-    margin-top: 1rem;
-  }
 `;
 
 export const MessageContent = styled.div`
@@ -122,4 +119,46 @@ export const MessageContent = styled.div`
   justify-content: center;
 
   font-size: 1.6rem;
+`;
+
+export const TableHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.6rem;
+  margin-bottom: 3rem;
+
+  form {
+    display: flex;
+    width: 50%;
+
+    input {
+      width: 100%;
+    }
+
+    button {
+      width: 30%;
+      height: 4rem;
+
+      background: ${(props) => props.theme.darkOrange};
+      border-bottom-right-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
+      border: 0;
+      padding: 0 2rem;
+
+      color: ${(props) => props.theme.white};
+      font-weight: bold;
+      font-size: 1.2rem;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background: ${shade(0.2, '#F25D27')};
+      }
+
+      &:disabled {
+        background: ${shade(0.2, '#F25D27')};
+        cursor: not-allowed;
+      }
+    }
+  }
 `;

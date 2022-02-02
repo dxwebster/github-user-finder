@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FiChevronRight } from 'react-icons/fi';
 import { useNavigate } from 'react-router';
 
@@ -9,7 +9,8 @@ import {
   ArrowContent,
   InfosContent,
   PaginationContent,
-  MessageContent
+  MessageContent,
+  TableHeader
 } from './styles';
 
 import { Repository } from '../../../../interfaces/Repository';
@@ -19,12 +20,24 @@ import { handleQueryParams, setUrlQuery } from '../../../../helpers/url-search-p
 import SvgStar from '../../../../assets/SvgStar';
 import SvgFork from '../../../../assets/SvgFork';
 import SvgWatch from '../../../../assets/SvgWatch';
-import { RootStateOrAny, useSelector } from 'react-redux';
+import SvgSearch from '../../../../assets/SvgSearch';
+import Input from '../../../../components/Input';
+
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
+import { FormHandles } from '@unform/core';
+import { searchRepoRequest } from '../../../../store/modules/repos/actions';
+import { Form } from '@unform/web';
 
 export default function Repositories({ isListActive, reposList, pageable }) {
-  const [elementsPerPage, setElementsPerPage] = useState(4);
   const { notFound } = useSelector((state: RootStateOrAny) => state.repos);
+
+  const [elementsPerPage, setElementsPerPage] = useState(4);
+  const [searchValue, setSearchValue] = useState('');
+  const [isStarred, setIsStarred] = useState(false);
+
   const navigate = useNavigate();
+  const formRef = useRef<FormHandles>(null);
+  const dispatch = useDispatch();
 
   const querySizeList = [
     { value: 4, label: 4 },
@@ -38,8 +51,55 @@ export default function Repositories({ isListActive, reposList, pageable }) {
     navigate(urlQuery, { replace: true });
   }, [elementsPerPage]);
 
+  function handleSubmit() {
+    const { queryValue } = handleQueryParams();
+    dispatch(searchRepoRequest(queryValue, searchValue));
+    setIsStarred(false);
+  }
+
   return (
     <Container>
+      <TableHeader>
+        <Form ref={formRef} onSubmit={handleSubmit}>
+          <Input
+            type="text"
+            name="filter"
+            icon={SvgSearch}
+            hasValidation={false}
+            hasBorder={true}
+            inputHeight="4.1rem"
+            placeholder="Busque por nome de repositório"
+            radius="left"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+          />
+          <button type="submit" disabled={searchValue === ''}>
+            Procurar
+          </button>
+        </Form>
+
+        <PaginationContent>
+          <select onChange={(e) => setElementsPerPage(Number(e.target.value))}>
+            {querySizeList.map((size) => (
+              <option key={size.value} value={size.value}>
+                {size.label}
+              </option>
+            ))}
+          </select>
+
+          {!notFound && pageable?.totalPages > 1 && elementsPerPage && (
+            <Pageable
+              data={pageable}
+              serviceRequest={(_: any, currentPage: number) => {
+                const { queryValue, queryType } = handleQueryParams();
+                const { urlQuery } = setUrlQuery(queryValue, currentPage, elementsPerPage, queryType);
+                navigate(urlQuery, { replace: true });
+              }}
+            />
+          )}
+        </PaginationContent>
+      </TableHeader>
+
       <RepositoriesList displayList={isListActive}>
         {notFound && <MessageContent>Repositório não encontrado.</MessageContent>}
 
@@ -79,27 +139,6 @@ export default function Repositories({ isListActive, reposList, pageable }) {
             </a>
           ))}
       </RepositoriesList>
-
-      <PaginationContent>
-        <select onChange={(e) => setElementsPerPage(Number(e.target.value))}>
-          {querySizeList.map((size) => (
-            <option key={size.value} value={size.value}>
-              {size.label}
-            </option>
-          ))}
-        </select>
-
-        {!notFound && pageable?.totalPages > 1 && elementsPerPage && (
-          <Pageable
-            data={pageable}
-            serviceRequest={(_: any, currentPage: number) => {
-              const { queryValue, queryType } = handleQueryParams();
-              const { urlQuery } = setUrlQuery(queryValue, currentPage, elementsPerPage, queryType);
-              navigate(urlQuery, { replace: true });
-            }}
-          />
-        )}
-      </PaginationContent>
     </Container>
   );
 }

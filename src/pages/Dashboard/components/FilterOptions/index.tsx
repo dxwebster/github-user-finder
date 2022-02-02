@@ -1,6 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Form } from '@unform/web';
-import { FormHandles } from '@unform/core';
+import React, { useState, useEffect } from 'react';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 
@@ -8,27 +6,17 @@ import { Container, FilterContent, ButtonContent, Button, MenuContent } from './
 
 import SvgList from '../../../../assets/SvgList';
 import SvgGrid from '../../../../assets/SvgGrid';
-import SvgSearch from '../../../../assets/SvgSearch';
-import Input from '../../../../components/Input';
 
-import { setDisplayRepos, searchRepoRequest } from '../../../../store/modules/repos/actions';
+import { setDisplayRepos } from '../../../../store/modules/repos/actions';
 import { handleQueryParams, setUrlQuery } from '../../../../helpers/url-search-params';
+import SvgStar from '../../../../assets/SvgStar';
 
 export default function Options() {
   const { isListActive, isGridActive } = useSelector((state: RootStateOrAny) => state.repos);
-
-  const [searchValue, setSearchValue] = useState('');
   const [isStarred, setIsStarred] = useState(false);
 
-  const formRef = useRef<FormHandles>(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  function handleSubmit() {
-    const { queryValue } = handleQueryParams();
-    dispatch(searchRepoRequest(queryValue, searchValue));
-    setIsStarred(false);
-  }
 
   function handleReposMenu(type: string) {
     const { queryValue, queryPage, querySize } = handleQueryParams();
@@ -37,8 +25,6 @@ export default function Options() {
 
     if (type === 'starred') setIsStarred(true);
     if (type === 'all') setIsStarred(false);
-
-    setSearchValue('');
   }
 
   useEffect(() => {
@@ -49,31 +35,13 @@ export default function Options() {
   return (
     <Container>
       <FilterContent>
-        <Form ref={formRef} onSubmit={handleSubmit}>
-          <Input
-            type="text"
-            name="filter"
-            icon={SvgSearch}
-            hasValidation={false}
-            hasBorder={true}
-            inputHeight="4.1rem"
-            placeholder="Busque por nome de repositório"
-            radius="left"
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-          />
-          <button type="submit" disabled={searchValue === ''}>
-            Procurar
-          </button>
-        </Form>
-
         <MenuContent>
           <button onClick={() => handleReposMenu('all')} disabled={!isStarred} className={!isStarred ? 'active' : ''}>
             Mostrar todos
           </button>
 
           <button onClick={() => handleReposMenu('starred')} disabled={isStarred} className={isStarred ? 'active' : ''}>
-            Starred
+            <SvgStar /> Starred
           </button>
         </MenuContent>
 

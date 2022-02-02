@@ -6,14 +6,11 @@ interface DisplayButtonProps {
 
 export const Container = styled.div`
   grid-area: nav;
-  align-items: center;
-  justify-content: space-between;
-
   display: flex;
   gap: 2rem;
 
-  padding-bottom: 3rem;
-  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
   border-bottom: 1px solid ${(props) => props.theme.border};
 `;
 
@@ -63,21 +60,24 @@ export const FilterContent = styled.div`
 export const MenuContent = styled.nav`
   width: 40%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-
   gap: 4rem;
 
   font-size: 1.4rem;
   text-align: center;
 
   button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
     position: relative;
-    top: -0.3rem;
-    transition: color 0.2s;
     cursor: pointer;
+
     font-size: 1.6rem;
     white-space: nowrap;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: ${(props) => props.theme.text};
 
     &.active {
       font-weight: bold;
@@ -88,10 +88,13 @@ export const MenuContent = styled.nav`
         border-radius: 0 0 3px 3px;
         width: 100%;
         position: absolute;
-        top: 2.5rem;
+        top: 3.9rem;
         left: 0;
         background: ${(props) => props.theme.darkOrange};
       }
+    }
+    &:disabled {
+      color: ${(props) => props.theme.darkOrange};
     }
   }
 `;

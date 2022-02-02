@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
   display: ${(props) => (props.hidden ? 'none' : 'flex')};
-  margin-top: 1.2rem;
 `;
 
 interface ButtonPageProps {
