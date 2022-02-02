@@ -6,9 +6,9 @@ export default function NotFound() {
   return (
     <Container>
       <Main>
-        <FilterOptions>oasdasdala</FilterOptions>
-        <ProfileCard>asdasda</ProfileCard>
-        <Repositories>asdasd</Repositories>
+        <FilterOptions>Usuário não encontrado</FilterOptions>
+        <ProfileCard>Usuário não encontrado</ProfileCard>
+        <Repositories>Usuário não encontrado</Repositories>
       </Main>
     </Container>
   );

@@ -24,21 +24,34 @@ export const Main = styled.main`
 `;
 
 export const FilterOptions = styled.main`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   background-color: white;
   grid-area: nav;
   height: 20rem;
+  font-size: 1.6rem;
 `;
 
 export const Repositories = styled.main`
-  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  background-color: white;
   grid-area: content;
   height: 20rem;
+  font-size: 1.6rem;
 `;
 
 export const ProfileCard = styled.main`
-  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  background-color: white;
   grid-area: sidenav;
   height: 20rem;
+  font-size: 1.6rem;
 `;
