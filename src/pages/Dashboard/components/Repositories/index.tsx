@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FiChevronRight } from 'react-icons/fi';
 import { useNavigate } from 'react-router';
+import { FormHandles } from '@unform/core';
+import { Form } from '@unform/web';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 
 import {
   Container,
@@ -14,26 +17,21 @@ import {
 } from './styles';
 
 import { Repository } from '../../../../interfaces/Repository';
-import Pageable from '../../../../components/Pageable';
 import { handleQueryParams, setUrlQuery } from '../../../../helpers/url-search-params';
+import { searchRepoRequest, setIsStarred } from '../../../../store/modules/repos/actions';
 
 import SvgStar from '../../../../assets/SvgStar';
 import SvgFork from '../../../../assets/SvgFork';
 import SvgWatch from '../../../../assets/SvgWatch';
 import SvgSearch from '../../../../assets/SvgSearch';
 import Input from '../../../../components/Input';
-
-import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { FormHandles } from '@unform/core';
-import { searchRepoRequest } from '../../../../store/modules/repos/actions';
-import { Form } from '@unform/web';
+import Pageable from '../../../../components/Pageable';
 
 export default function Repositories({ isListActive, reposList, pageable }) {
-  const { notFound } = useSelector((state: RootStateOrAny) => state.repos);
+  const { notFound, isStarred } = useSelector((state: RootStateOrAny) => state.repos);
 
   const [elementsPerPage, setElementsPerPage] = useState(4);
   const [searchValue, setSearchValue] = useState('');
-  const [isStarred, setIsStarred] = useState(false);
 
   const navigate = useNavigate();
   const formRef = useRef<FormHandles>(null);
@@ -54,7 +52,7 @@ export default function Repositories({ isListActive, reposList, pageable }) {
   function handleSubmit() {
     const { queryValue } = handleQueryParams();
     dispatch(searchRepoRequest(queryValue, searchValue));
-    setIsStarred(false);
+    dispatch(setIsStarred(false));
   }
 
   return (
@@ -72,6 +70,7 @@ export default function Repositories({ isListActive, reposList, pageable }) {
             radius="left"
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
+            disabled={isStarred}
           />
           <button type="submit" disabled={searchValue === ''}>
             Procurar

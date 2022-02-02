@@ -134,6 +134,10 @@ export const TableHeader = styled.div`
 
     input {
       width: 100%;
+
+      &:disabled {
+        cursor: not-allowed;
+      }
     }
 
     button {

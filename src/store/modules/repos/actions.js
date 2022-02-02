@@ -71,3 +71,10 @@ export function searchRepoFailure(error) {
     payload: { error }
   };
 }
+
+export function setIsStarred(boolean) {
+  return {
+    type: 'TYPE_REPOS_SET_IS_STARRED',
+    payload: boolean
+  };
+}

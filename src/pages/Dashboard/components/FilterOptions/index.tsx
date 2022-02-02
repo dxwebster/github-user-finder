@@ -7,13 +7,12 @@ import { Container, FilterContent, ButtonContent, Button, MenuContent } from './
 import SvgList from '../../../../assets/SvgList';
 import SvgGrid from '../../../../assets/SvgGrid';
 
-import { setDisplayRepos } from '../../../../store/modules/repos/actions';
+import { setDisplayRepos, setIsStarred } from '../../../../store/modules/repos/actions';
 import { handleQueryParams, setUrlQuery } from '../../../../helpers/url-search-params';
 import SvgStar from '../../../../assets/SvgStar';
 
 export default function Options() {
-  const { isListActive, isGridActive } = useSelector((state: RootStateOrAny) => state.repos);
-  const [isStarred, setIsStarred] = useState(false);
+  const { isListActive, isGridActive, isStarred } = useSelector((state: RootStateOrAny) => state.repos);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -23,13 +22,13 @@ export default function Options() {
     const { urlQuery } = setUrlQuery(queryValue, queryPage, querySize, type);
     navigate(urlQuery, { replace: true });
 
-    if (type === 'starred') setIsStarred(true);
-    if (type === 'all') setIsStarred(false);
+    if (type === 'starred') dispatch(setIsStarred(true));
+    if (type === 'all') dispatch(setIsStarred(false));
   }
 
   useEffect(() => {
     const { queryType } = handleQueryParams();
-    if (queryType === 'starred') setIsStarred(true);
+    if (queryType === 'starred') dispatch(setIsStarred(true));
   }, []);
 
   return (

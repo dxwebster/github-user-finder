@@ -16,7 +16,7 @@ export const INITIAL_STATE = {
   loadingRepos: false,
   repos: null,
   notFound: false,
-
+  isStarred: false,
   isListActive: true,
   isGridActive: false
 };
@@ -56,6 +56,11 @@ export function repos(state = INITIAL_STATE, action) {
 
       case TYPE_REPOS_LOADING: {
         draft.repos = action.payload.repos;
+        break;
+      }
+
+      case 'TYPE_REPOS_SET_IS_STARRED': {
+        draft.isStarred = action.payload;
         break;
       }
       case TYPE_REPOS_SET_DISPLAY: {
