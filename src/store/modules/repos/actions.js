@@ -7,7 +7,8 @@ import {
   TYPE_REPOS_SEARCH_REQUEST,
   TYPE_REPOS_SEARCH_SUCCESS,
   TYPE_REPOS_SEARCH_FAILURE,
-  TYPE_REPOS_FILTER_REPOS
+  TYPE_REPOS_FILTER_REPOS,
+  TYPE_REPOS_SET_IS_STARRED
 } from '../../../constants/types-reducers';
 
 export function reposRequest(username, pageNumber = 1, size = 4, type) {
@@ -74,7 +75,7 @@ export function searchRepoFailure(error) {
 
 export function setIsStarred(boolean) {
   return {
-    type: 'TYPE_REPOS_SET_IS_STARRED',
+    type: TYPE_REPOS_SET_IS_STARRED,
     payload: boolean
   };
 }

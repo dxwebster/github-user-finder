@@ -7,18 +7,25 @@ import { reposMapper, searchedRepoMapper } from '../../../mappers/reposMapper';
 export function* getRepos({ payload }) {
   try {
     const { username, pageNumber, size, type } = payload;
-
     const { user } = yield select((state) => state.user);
-    const { isStarred } = yield select((state) => state.repos);
 
-    const reposUrl =
-      type === 'all'
-        ? `/users/${username}/repos?page=${pageNumber}&per_page=${size}`
-        : `/users/${username}/starred?page=${pageNumber}&per_page=${size}`;
+    let reposUrl;
+    let reposResponse;
+    let totalElements;
 
-    const totalElements = !isStarred ? user.public_repos : null;
+    if (type === 'starred') {
+      reposUrl = `/users/${username}/starred`;
+      const allstarredResponse = yield call(api.get, reposUrl, null);
+      totalElements = allstarredResponse.data.length;
 
-    const reposResponse = yield call(api.get, reposUrl, null);
+      reposUrl = `/users/${username}/starred?page=${pageNumber}&per_page=${size}`;
+      reposResponse = yield call(api.get, reposUrl, null);
+    } else {
+      reposUrl = `/users/${username}/repos?page=${pageNumber}&per_page=${size}`;
+      reposResponse = yield call(api.get, reposUrl, null);
+      totalElements = user.public_repos;
+    }
+
     const { reposWrapper } = reposMapper(reposResponse?.data, pageNumber, totalElements);
 
     yield put(reposSuccess(reposWrapper));

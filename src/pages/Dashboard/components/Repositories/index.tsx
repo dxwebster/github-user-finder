@@ -78,13 +78,17 @@ export default function Repositories({ isListActive, reposList, pageable }) {
         </Form>
 
         <PaginationContent>
-          <select onChange={(e) => setElementsPerPage(Number(e.target.value))}>
-            {querySizeList.map((size) => (
-              <option key={size.value} value={size.value}>
-                {size.label}
-              </option>
-            ))}
-          </select>
+          <section>
+            <span>Exibir</span>
+            <select onChange={(e) => setElementsPerPage(Number(e.target.value))}>
+              {querySizeList.map((size) => (
+                <option key={size.value} value={size.value}>
+                  {size.label}
+                </option>
+              ))}
+            </select>
+            <span>Itens por página</span>
+          </section>
 
           {!notFound && pageable?.totalPages > 1 && elementsPerPage && (
             <Pageable

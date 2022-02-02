@@ -9,7 +9,8 @@ import {
   TYPE_REPOS_CLEAN_STATES,
   TYPE_REPOS_SEARCH_REQUEST,
   TYPE_REPOS_SEARCH_SUCCESS,
-  TYPE_REPOS_SEARCH_FAILURE
+  TYPE_REPOS_SEARCH_FAILURE,
+  TYPE_REPOS_SET_IS_STARRED
 } from '../../../constants/types-reducers';
 
 export const INITIAL_STATE = {
@@ -58,8 +59,7 @@ export function repos(state = INITIAL_STATE, action) {
         draft.repos = action.payload.repos;
         break;
       }
-
-      case 'TYPE_REPOS_SET_IS_STARRED': {
+      case TYPE_REPOS_SET_IS_STARRED: {
         draft.isStarred = action.payload;
         break;
       }
@@ -74,6 +74,7 @@ export function repos(state = INITIAL_STATE, action) {
         draft.notFound = INITIAL_STATE.notFound;
         draft.isListActive = INITIAL_STATE.isListActive;
         draft.isGridActive = INITIAL_STATE.isGridActive;
+        draft.isStarred = INITIAL_STATE.isStarred;
         break;
       }
 

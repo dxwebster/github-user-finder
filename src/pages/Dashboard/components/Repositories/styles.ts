@@ -21,6 +21,7 @@ export const RepositoriesList = styled.div<RepositoriesProps>`
 
   a {
     width: 100%;
+    min-height: 10rem;
     max-height: ${(props) => (props.displayList ? 'auto' : '30rem')};
     padding: 1.5rem 2rem;
 
@@ -107,6 +108,16 @@ export const PaginationContent = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+
+  section {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-right: 1rem;
+
+    font-size: 1.2rem;
+    color: ${(props) => props.theme.title};
+  }
 `;
 
 export const MessageContent = styled.div`
