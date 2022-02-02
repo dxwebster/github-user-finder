@@ -6,7 +6,7 @@ export const Container = styled.div`
 `;
 
 export const Main = styled.main`
-  width: 80%;
+  width: 90%;
   margin: 50px auto;
 
   @media (min-width: 1920px) {
