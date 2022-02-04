@@ -24,9 +24,10 @@ export const RepositoriesList = styled.div<RepositoriesProps>`
     min-height: 10rem;
     max-height: ${(props) => (props.displayList ? 'auto' : '30rem')};
     padding: 1.5rem 2rem;
-
-    display: grid;
+    
+    display: flex;
     justify-content: space-between;
+  
     flex-direction: ${(props) => (props.displayList ? 'row' : 'column')};
     grid-template-columns: ${(props) => (props.displayList ? '5fr 2fr 1fr;' : '1fr')};
     gap: 2rem;
@@ -49,6 +50,11 @@ export const RepositoriesList = styled.div<RepositoriesProps>`
       width: 64px;
       height: 64px;
       border-radius: 50%;
+    }
+
+    @media (max-width:500px) {
+      flex-direction: column;
+      text-align: center;
     }
   }
 `;
@@ -176,4 +182,19 @@ export const TableHeader = styled.div`
       }
     }
   }
+  @media (max-width: 700px){
+    flex-direction: column;
+
+    form {
+      width: 100%;
+      margin-bottom: 16px;
+    }
+  }
 `;
+
+export const IconsWrapper = styled.div`
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  align-items: center;
+`

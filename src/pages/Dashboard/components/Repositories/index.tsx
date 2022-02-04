@@ -13,7 +13,8 @@ import {
   InfosContent,
   PaginationContent,
   MessageContent,
-  TableHeader
+  TableHeader,
+  IconsWrapper
 } from './styles';
 
 import { Repository } from '../../../../interfaces/Repository';
@@ -113,32 +114,33 @@ export default function Repositories({ isListActive, reposList, pageable }) {
                 <h2>{repo?.name}</h2>
                 <p>{repo.description || 'Sem descrição'}</p>
               </TitleContent>
+              <IconsWrapper>
+                <InfosContent>
+                  <li>
+                    <SvgWatch />
+                    <span>{repo?.watchers || '0'}</span>
+                    <div>Watchs</div>
+                  </li>
 
-              <InfosContent>
-                <li>
-                  <SvgWatch />
-                  <span>{repo?.watchers || '0'}</span>
-                  <div>Watchs</div>
-                </li>
+                  <li>
+                    <SvgStar />
+                    <span>{repo?.stars || '0'}</span>
+                    <div>Stars</div>
+                  </li>
 
-                <li>
-                  <SvgStar />
-                  <span>{repo?.stars || '0'}</span>
-                  <div>Stars</div>
-                </li>
+                  <li>
+                    <SvgFork />
+                    <span>{repo?.forks || '0'}</span>
+                    <div>Forks</div>
+                  </li>
+                </InfosContent>
 
-                <li>
-                  <SvgFork />
-                  <span>{repo?.forks || '0'}</span>
-                  <div>Forks</div>
-                </li>
-              </InfosContent>
-
-              <ArrowContent>
-                <div>
-                  <FiChevronRight size={20} />
-                </div>
-              </ArrowContent>
+                <ArrowContent>
+                  <div>
+                    <FiChevronRight size={20} />
+                  </div>
+                </ArrowContent>
+              </IconsWrapper>
             </a>
           ))}
       </RepositoriesList>

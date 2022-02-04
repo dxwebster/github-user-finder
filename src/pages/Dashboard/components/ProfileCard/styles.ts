@@ -11,6 +11,7 @@ export const ProfileContainer = styled.div`
   align-items: center;
 
   padding: 4rem 2rem;
+
 `;
 
 export const ImageContainer = styled.div`
@@ -62,6 +63,8 @@ export const UserData = styled.div`
   ul {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1rem;
 
     li {
       span {
