@@ -1,0 +1,24 @@
+[
+  {
+    "full_name": "foo/starred-repo-1",
+    "owner": {
+      "login": "foo"
+    },
+    "html_url": "https://github.com/foo/starred-repo-1",
+    "description": "My fixture starred-repo-1",
+    "stargazers_count": 76,
+    "watchers_count": 29,
+    "forks_count": 5
+  },
+  {
+    "full_name": "bar/repo-2",
+    "owner": {
+      "login": "bar"
+    },
+    "html_url": "https://github.com/bar/starred-repo-2",
+    "description": "My fixture starred-repo-2",
+    "stargazers_count": 65,
+    "watchers_count": 44,
+    "forks_count": 1
+  }
+]
