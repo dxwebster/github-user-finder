@@ -1,0 +1,7 @@
+{
+  "baseUrl": "http://localhost:3000",
+  "pluginFile": false,
+  "supportFile": false,
+  "viewportHeight": 1024,
+  "viewportWidth": 1280  
+}

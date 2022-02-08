@@ -1,0 +1,46 @@
+[
+  {
+    "full_name": "chris-doe/repo-1",
+    "owner": {
+      "login": "chris-doe"
+    },
+    "html_url": "https://github.com/chris-doe/repo-1",
+    "description": "My fixture repo-1",
+    "stargazers_count": 1000,
+    "watchers_count": 25,
+    "forks_count": 15
+  },
+  {
+    "full_name": "chris-doe/repo-2",
+    "owner": {
+      "login": "chris-doe"
+    },
+    "html_url": "https://github.com/chris-doe/repo-2",
+    "description": "My fixture repo-2",
+    "stargazers_count": 1001,
+    "watchers_count": 26,
+    "forks_count": 16
+  },
+  {
+    "full_name": "chris-doe/repo-3",
+    "owner": {
+      "login": "chris-doe"
+    },
+    "html_url": "https://github.com/chris-doe/repo-3",
+    "description": "My fixture repo-3",
+    "stargazers_count": 1002,
+    "watchers_count": 27,
+    "forks_count": 17
+  },
+  {
+    "full_name": "chris-doe/repo-4",
+    "owner": {
+      "login": "chris-doe"
+    },
+    "html_url": "https://github.com/chris-doe/repo-4",
+    "description": "My fixture repo-4",
+    "stargazers_count": 1003,
+    "watchers_count": 28,
+    "forks_count": 18
+  }
+]
