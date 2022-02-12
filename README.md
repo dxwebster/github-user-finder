@@ -4,7 +4,7 @@
 
 <h3 align=center>
 
-💻 **Acesse a aplicação [aqui](https://app-github-user-finder.herokuapp.com/)**
+💻 **Acesse a aplicação [aqui](https://dxwebster.github.io/github-user-finder/)**
 
 </h3>
 
@@ -20,11 +20,7 @@
 
 </p>
 
-
-
-
-
-## Tecnologias utilizadas
+## 🛠 Tecnologias utilizadas
 
 - react: `Framework Javascript baseado em componentes`
 
@@ -55,7 +51,23 @@
 - prettier: `Ferramenta de formatação de códigos`
 
 - reactotron: `Ferramenta para inspecionar estados`
+## 🔖 Features implementadas
 
+### Página de search
+
+• Busca por nome de usuário
+• Validação de search vazio
+### Página de Listagem de Repositórios
+
+• Exibição de dados do usuário
+• Navegação entre lista de repositórios públicos e starred
+• Busca por nome de repositório público
+• Paginação com opções de quantidade de itens por página
+• Duas opções de visualização de repositórios por lista ou grid
+• Refresh da página sem perder os dados de busca
+• Redirecionamento para página inicial caso a url seja mainpulada
+• Tratamento para usuário não encontrado e redirecionamento
+• Toasts de erro, warning e success
 
 ## 📥 Execute esse projeto no seu computador
 
