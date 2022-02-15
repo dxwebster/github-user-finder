@@ -1,0 +1,12 @@
+{
+  "login": "chris-doe",
+  "id": 12345,
+  "avatar_url": "https://i.pravatar.cc/300",
+  "html_url": "https://github.com/chris-doe",
+  "name": "Chris Doe",
+  "bio": "Nerd",
+  "public_repos": 100,
+  "public_gists": 10,
+  "followers": 1000,
+  "following": 1250
+}

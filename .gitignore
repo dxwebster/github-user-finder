@@ -23,9 +23,13 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-
 #linters
 .eslintcache
 .eslintrc.json
 .prettierignore
 .prettierrc.json
+
+#cypress
+/cypress/downloads
+/cypress/screenshos
+/cypress/videos/

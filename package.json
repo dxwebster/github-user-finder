@@ -5,11 +5,12 @@
   "scripts": {
     "start": "export ENVIRONMENT=${ENVIRONMENT:=development} NODE_ENV=development && react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "json-server server.json -p 3333",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "test": "cypress run",
+    "cy:open": "cypress open"
   },
   "homepage": "https://dxwebster.github.io/github-user-finder",
   "browserslist": {
@@ -76,6 +77,7 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
-    "gh-pages": "^3.2.3"
+    "gh-pages": "^3.2.3",
+    "cypress": "^9.4.1"
   }
 }
