@@ -1,2 +1,0 @@
-# GoBarber Back-end
-
